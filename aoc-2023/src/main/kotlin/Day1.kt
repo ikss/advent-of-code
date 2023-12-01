@@ -1,9 +1,9 @@
 class Day1(
-    private val file: String,
+    file: String,
 ) {
     private val input = this::class.java.getResourceAsStream(file)!!.bufferedReader().readLines()
 
-    val digits = listOf(
+    private val digits = listOf(
         "one",
         "two",
         "three",
