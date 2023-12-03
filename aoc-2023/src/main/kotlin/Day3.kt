@@ -3,20 +3,14 @@ class Day3(
 ) {
     private val input = this::class.java.getResourceAsStream(file)!!.bufferedReader().readLines()
 
-    fun part1(): Int =
-        getAllSymbols { true }
-            .flatMap { findAdjacentNumbers(it) }
-            .sum()
+    fun part1(): Int = getAllSymbols { true }
+        .flatMap { findAdjacentNumbers(it) }
+        .sum()
 
-    fun part2(): Int {
-        val gears = getAllSymbols { it == '*' }
-        return gears
-            .map { findAdjacentNumbers(it) }
-            .filter { it.size == 2 }
-            .sumOf {
-                it.reduce { a, b -> a * b }
-            }
-    }
+    fun part2(): Int = getAllSymbols { it == '*' }
+        .map { findAdjacentNumbers(it) }
+        .filter { it.size == 2 }
+        .sumOf { it.first() * it.last() }
 
     private fun getAllSymbols(predicate: (Char) -> Boolean): List<Pair<Int, Int>> {
         val symbols = ArrayList<Pair<Int, Int>>()
@@ -31,37 +25,35 @@ class Day3(
     }
 
     private fun findAdjacentNumbers(symbol: Pair<Int, Int>): List<Int> {
-        val (x, y) = symbol
+        val (i, j) = symbol
         val numbers = ArrayList<Int>()
         val visited = HashSet<Pair<Int, Int>>()
 
-        for ((dx, dy) in directions) {
-            val newX = x + dx
-            val newY = y + dy
-            if (!visited.add(newX to newY)) continue
+        for ((di, dj) in directions) {
+            val newI = i + di
+            val newJ = j + dj
+            if (!visited.add(newI to newJ)) continue
 
-            if (input[newX][newY].isDigit()) {
-                numbers.add(findNumber(newX, newY, visited))
+            if (input[newI][newJ].isDigit()) {
+                numbers.add(findNumber(newI, newJ, visited))
             }
         }
         return numbers
     }
 
-    private fun findNumber(x: Int, y: Int, visited: HashSet<Pair<Int, Int>>): Int {
-        var y = y
-        while (y >= 0 && input[x][y].isDigit()) {
-            y--
+    private fun findNumber(i: Int, j: Int, visited: HashSet<Pair<Int, Int>>): Int {
+        val row = input[i]
+        var j = j
+        while (j > 0 && row[j - 1].isDigit()) {
+            j--
         }
-
-        // go back to the first digit of the number
-        y++
         val number = StringBuilder()
 
         // start moving right to read the entire number, stopping at a . or if we hit the right end of the grid
-        while (y < input[x].length && input[x][y].isDigit()) {
-            number.append(input[x][y])
-            visited.add(x to y)
-            y++
+        while (j < row.length && row[j].isDigit()) {
+            number.append(row[j])
+            visited.add(i to j)
+            j++
         }
         return number.toString().toInt()
     }
@@ -73,10 +65,10 @@ class Day3(
 
 fun main() {
     val daytest = Day3("day3_test.txt")
-    println("part1 test: ${daytest.part1()}")
-    println("part2 test: ${daytest.part2()}\n")
+    println("part1 test: ${daytest.part1()}")    //part1 test: 4361
+    println("part2 test: ${daytest.part2()}\n")  //part2 test: 467835
 
     val day = Day3("day3.txt")
-    println("part1: ${day.part1()}")
-    println("part2: ${day.part2()}")
+    println("part1: ${day.part1()}")             //part1: 546563
+    println("part2: ${day.part2()}")             //part2: 91031374
 }
