@@ -12,17 +12,16 @@ class Day3(
         .filter { it.size == 2 }
         .sumOf { it.first() * it.last() }
 
-    private fun getAllSymbols(predicate: (Char) -> Boolean): List<Pair<Int, Int>> {
-        val symbols = ArrayList<Pair<Int, Int>>()
-        for (i in input.indices) {
-            for (j in input[i].indices) {
-                val c = input[i][j]
-                if (c.isDigit() || c == '.' || !predicate(c)) continue
-                symbols.add(i to j)
+    private fun getAllSymbols(predicate: (Char) -> Boolean): Sequence<Pair<Int, Int>> =
+        sequence {
+            for (i in input.indices) {
+                for (j in input[i].indices) {
+                    val c = input[i][j]
+                    if (c.isDigit() || c == '.' || !predicate(c)) continue
+                    yield(i to j)
+                }
             }
         }
-        return symbols
-    }
 
     private fun findAdjacentNumbers(symbol: Pair<Int, Int>): List<Int> {
         val (i, j) = symbol
@@ -47,9 +46,8 @@ class Day3(
         while (j > 0 && row[j - 1].isDigit()) {
             j--
         }
+        
         val number = StringBuilder()
-
-        // start moving right to read the entire number, stopping at a . or if we hit the right end of the grid
         while (j < row.length && row[j].isDigit()) {
             number.append(row[j])
             visited.add(i to j)
