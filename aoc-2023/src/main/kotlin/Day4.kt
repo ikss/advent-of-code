@@ -23,17 +23,12 @@ class Day4(
         return cardCount.sum()
     }
 
-    private fun getWinningNumberAndRegularNumbers(): Sequence<Pair<Set<Int>, List<Int>>> =
+    private fun getWinningNumberAndRegularNumbers(): Sequence<Pair<Set<Long>, List<Long>>> =
         input.asSequence()
             .map {
                 val (winning, card) = it.substringAfter(": ").split(" | ")
                 winning.splitToNumbers().toSet() to card.splitToNumbers().toList()
             }
-
-    private companion object {
-        fun String.splitToNumbers(): Sequence<Int> = this.splitToSequence(" ").mapNotNull(::mapToInt)
-        fun mapToInt(s: String): Int? = s.trim().takeIf { it.isNotBlank() }?.toInt()
-    }
 }
 
 fun main() {

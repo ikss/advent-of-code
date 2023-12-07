@@ -119,11 +119,6 @@ class Day5(
         val sourceStart: Long,
         val length: Long,
     )
-
-    private companion object {
-        fun String.splitToNumbers(): Sequence<Long> = this.splitToSequence(" ").mapNotNull(::mapToLong)
-        fun mapToLong(s: String): Long? = s.trim().takeIf { it.isNotBlank() }?.toLong()
-    }
 }
 
 fun main() {
