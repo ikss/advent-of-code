@@ -48,11 +48,13 @@ class Day8(
                 for (direction in instructions) {
                     val (l, r) = map[curr]!!
                     curr = if (direction == 'L') l else r
+                    if (curr.endsWith('Z')) break
                 }
                 count++
             }
-            count * instructions.length
+            count
         }
+
         return trips.reduce { acc, i -> findLCM(acc, i) }
     }
 
@@ -83,5 +85,5 @@ fun main() {
 
     val day = Day8("day8.txt")
     println("part1: ${day.part1()}")                //part1: 16343
-    println("part2: ${day.part2()}")                //part2: 15299095336639
+    println("part2: ${day.part2()}")                //part2: 55231391107
 }
