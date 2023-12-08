@@ -45,12 +45,11 @@ class Day8(
             var curr = startingPoint
             var count = 0L
             while (!curr.endsWith('Z')) {
-                for (direction in instructions) {
-                    val (l, r) = map[curr]!!
-                    curr = if (direction == 'L') l else r
-                    if (curr.endsWith('Z')) break
-                }
-                count++
+                val direction = instructions[count++.toInt() % instructions.length]
+                
+                val (l, r) = map[curr]!!
+                curr = if (direction == 'L') l else r
+                if (curr.endsWith('Z')) break
             }
             count
         }
@@ -70,5 +69,5 @@ fun main() {
 
     val day = Day8("day8.txt")
     println("part1: ${day.part1()}")                //part1: 16343
-    println("part2: ${day.part2()}")                //part2: 55231391107
+    println("part2: ${day.part2()}")                //part2: 15299095336639
 }
