@@ -4,38 +4,24 @@ class Day9(
     private val input = this::class.java.getResourceAsStream(file)!!.bufferedReader().readLines()
 
     fun part1(): Long {
-        return input.map { findNextStory(it.splitToNumbers().toList()) }
-            .sum()
+        return input.sumOf { findStory(it.splitToNumbers().toList(), next = true) }
     }
 
     fun part2(): Long {
-        return input.map { findPrevStory(it.splitToNumbers().toList()) }
-            .sum()
+        return input.sumOf { findStory(it.splitToNumbers().toList(), next = false) }
     }
 
-    private fun findNextStory(numbers: List<Long>): Long {
+    private fun findStory(numbers: List<Long>, next: Boolean): Long {
         val result = ArrayList<Long>()
         for (i in 1..<numbers.size) {
             result.add(numbers[i] - numbers[i - 1])
         }
+        val elem = if (next) numbers.last() else numbers.first()
         return if (result.toSet().size == 1) {
-            numbers.last() + result.first()
+            elem - result.first()
         } else {
-            val diff = findNextStory(result)
-            numbers.last() + diff
-        }
-    }
-
-    private fun findPrevStory(numbers: List<Long>): Long {
-        val result = ArrayList<Long>()
-        for (i in 1..<numbers.size) {
-            result.add(numbers[i] - numbers[i - 1])
-        }
-        return if (result.toSet().size == 1) {
-            numbers.first() - result.first()
-        } else {
-            val diff = findPrevStory(result)
-            numbers.first() - diff
+            val diff = findStory(result, next)
+            if (next) elem + diff else elem - diff
         }
     }
 
