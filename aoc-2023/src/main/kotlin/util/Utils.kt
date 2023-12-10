@@ -17,3 +17,7 @@ private fun lcm(a: Long, b: Long): Long {
     }
     return maxLcm
 }
+
+typealias Point = Pair<Int, Int>
+
+operator fun Point.plus(other: Point): Point = Point(this.first + other.first, this.second + other.second)

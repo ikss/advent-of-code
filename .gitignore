@@ -140,3 +140,5 @@ db-drop-all.sql
 build
 /gradlew
 /gradlew.bat
+
+*.txt

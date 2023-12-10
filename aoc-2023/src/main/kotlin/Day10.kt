@@ -1,45 +1,25 @@
 import Day10.Direction.*
 
-private typealias Point = Pair<Int, Int>
-
 class Day10(
     file: String,
 ) {
     private val input = this::class.java.getResourceAsStream(file)!!.bufferedReader().readLines()
+    private val startingPoint: Point = findStartingPoint()
+    private val loop: Set<Point> = findLoop(startingPoint)
 
-    fun part1(): Long {
-        var startingPoint = -1 to -1
+    private fun findStartingPoint(): Point {
         for (i in input.indices) {
             for (j in input[i].indices) {
                 if (input[i][j] == 'S') {
-                    startingPoint = i to j
-                    break
+                    return i to j
                 }
             }
         }
-        var result = 1L
-        var next = Direction.entries.firstNotNullOf { checkDirection(startingPoint, it) }
-
-        while (next.first != startingPoint) {
-            val (point, direction) = next
-            next = checkDirection(point.first to point.second, direction)!!
-            result++
-        }
-
-        return result / 2
+        throw IllegalArgumentException("No starting point found")
     }
 
-    fun part2(): Long {
-        var startingPoint = -1 to -1
-        for (i in input.indices) {
-            for (j in input[i].indices) {
-                if (input[i][j] == 'S') {
-                    startingPoint = i to j
-                    break
-                }
-            }
-        }
-        val loop = HashSet<Pair<Int, Int>>()
+    private fun findLoop(startingPoint: Point): Set<Point> {
+        val loop = HashSet<Point>()
         loop.add(startingPoint)
         var next = Direction.entries.firstNotNullOf { checkDirection(startingPoint, it) }
 
@@ -48,7 +28,14 @@ class Day10(
             val (point, direction) = next
             next = checkDirection(point.first to point.second, direction)!!
         }
-        
+        return loop
+    }
+
+    fun part1(): Long {
+        return loop.size / 2L
+    }
+
+    fun part2(): Long {
         val verticalSet = mutableSetOf('|', 'J', 'L')
         if (checkDirection(startingPoint, N) != null) {
             verticalSet.add('S')
@@ -71,15 +58,16 @@ class Day10(
 
     private fun checkDirection(point: Point, direction: Direction): Pair<Point, Direction>? {
         val (i, j) = point
+        val nextPoint = point + direction.diff
 
-        return when {
+        val nextDir = when {
             direction == N && i > 0 -> {
                 val char = input[i - 1][j]
                 when (char) {
-                    '|' -> i - 1 to j to N
-                    '7' -> i - 1 to j to W
-                    'F' -> i - 1 to j to E
-                    'S' -> i - 1 to j to END
+                    '|' -> N
+                    '7' -> W
+                    'F' -> E
+                    'S' -> END
                     else -> null
                 }
             }
@@ -87,10 +75,10 @@ class Day10(
             direction == S && i < input.size - 1 -> {
                 val char = input[i + 1][j]
                 when (char) {
-                    '|' -> i + 1 to j to S
-                    'L' -> i + 1 to j to E
-                    'J' -> i + 1 to j to W
-                    'S' -> i + 1 to j to END
+                    '|' -> S
+                    'L' -> E
+                    'J' -> W
+                    'S' -> END
                     else -> null
                 }
             }
@@ -98,10 +86,10 @@ class Day10(
             direction == W && j > 0 -> {
                 val char = input[i][j - 1]
                 when (char) {
-                    '-' -> i to j - 1 to W
-                    'L' -> i to j - 1 to N
-                    'F' -> i to j - 1 to S
-                    'S' -> i to j - 1 to END
+                    '-' -> W
+                    'L' -> N
+                    'F' -> S
+                    'S' -> END
                     else -> null
                 }
             }
@@ -109,24 +97,24 @@ class Day10(
             direction == E && j < input[0].length - 1 -> {
                 val char = input[i][j + 1]
                 when (char) {
-                    '-' -> i to j + 1 to E
-                    'J' -> i to j + 1 to N
-                    '7' -> i to j + 1 to S
-                    'S' -> i to j + 1 to END
+                    '-' -> E
+                    'J' -> N
+                    '7' -> S
+                    'S' -> END
                     else -> null
                 }
             }
-
             else -> null
-        }
+        } ?: return null
+        return nextPoint to nextDir
     }
 
-    private enum class Direction {
-        N,
-        S,
-        W,
-        E,
-        END
+    private enum class Direction(val diff: Point) {
+        N(-1 to 0),
+        S(1 to 0),
+        W(0 to -1),
+        E(0 to 1),
+        END(0 to 0),
     }
 }
 
