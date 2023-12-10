@@ -142,3 +142,4 @@ build
 /gradlew.bat
 
 *.txt
+/aoc-2023/src/main/resources/
