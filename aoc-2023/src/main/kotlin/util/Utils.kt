@@ -1,4 +1,4 @@
-fun String.splitToNumbers(): Sequence<Long> = this.splitToSequence(" ").mapNotNull(::mapToLong)
+fun String.splitToNumbers(delimiter: Char = ' '): Sequence<Long> = this.splitToSequence(delimiter).mapNotNull(::mapToLong)
 
 fun mapToLong(s: String): Long? = s.trim().takeIf { it.isNotBlank() }?.toLong()
 
