@@ -1,5 +1,3 @@
-import java.util.*
-
 class Day15(
     file: String,
 ) {
@@ -25,25 +23,20 @@ class Day15(
 
     fun part2(): Long {
         val operations = input.first().split(",")
-        val boxes = Array(256) { LinkedList<Pair<String, Int>>() }
+        val boxes = Array(256) { LinkedHashMap<String, Int>() }
 
         for (o in operations) {
             if (o.last() == '-') {
                 val lens = o.dropLast(1)
                 val index = hash(lens).toInt()
 
-                boxes[index].removeIf { it.first == lens }
+                boxes[index].remove(lens)
             } else {
                 val (lens, power) = o.split("=")
                 val index = hash(lens).toInt()
 
                 val box = boxes[index]
-                val existing = box.indexOfFirst { it.first == lens }
-                if (existing == -1) {
-                    box.add(lens to power.toInt())
-                } else {
-                    box[existing] = lens to power.toInt()
-                }
+                box[lens] = power.toInt()
             }
         }
 
@@ -51,9 +44,9 @@ class Day15(
 
         for (i in boxes.indices) {
             val box = boxes[i]
-            for (j in box.indices) {
-                val item = box[j]
-                val power = (1 + i) * (j + 1) * item.second
+            var j = 0
+            for (item in box) {
+                val power = (i + 1) * (j++ + 1) * item.value
                 result += power
             }
         }
