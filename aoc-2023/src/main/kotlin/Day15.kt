@@ -11,10 +11,10 @@ class Day15(
         return sum
     }
 
-    private fun hash(str: String): Long {
-        var result = 0L
+    private fun hash(str: String): Int {
+        var result = 0
         str.forEach {
-            result += it.toLong()
+            result += it.code
             result *= 17
             result %= 256
         }
@@ -51,9 +51,7 @@ class Day15(
             }
         }
 
-
         return result
-
     }
 }
 
