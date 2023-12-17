@@ -21,3 +21,31 @@ private fun lcm(a: Long, b: Long): Long {
 typealias Point = Pair<Int, Int>
 
 operator fun Point.plus(other: Point): Point = Point(this.first + other.first, this.second + other.second)
+
+operator fun Point.plus(direction: Direction): Point {
+    val (dx, dy) = direction.next
+    return first + dx to second + dy
+}
+
+enum class Direction(val next: Point) {
+    UP(-1 to 0),
+    RIGHT(0 to 1),
+    DOWN(1 to 0),
+    LEFT(0 to -1),
+    ;
+
+    fun isOpposite(other: Direction): Boolean {
+        return (this == UP && other == DOWN)
+                || (this == RIGHT && other == LEFT)
+                || (this == LEFT && other == RIGHT)
+                || (this == DOWN && other == UP)
+    }
+
+    fun getOpposite(other: Direction): Direction =
+        when (other) {
+            UP -> DOWN
+            RIGHT -> LEFT
+            DOWN -> UP
+            LEFT -> RIGHT
+        }
+}
