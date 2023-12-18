@@ -1,3 +1,5 @@
+import Direction.*
+
 class Day18(
     file: String,
 ) {
@@ -5,7 +7,7 @@ class Day18(
 
     fun part1(): Long {
         val instructions = input.map {
-            it.substringBefore(" (").split(" ").let { it[0] to it[1].toInt() }
+            it.substringBefore(" (").split(" ").let { it[0].toDir() to it[1].toInt() }
         }
         val (grid, border) = getGrid(instructions)
 
@@ -15,7 +17,7 @@ class Day18(
 
     fun part2(): Long {
         val instructions = input.map {
-            it.substringAfter("(#").dropLast(1).let { it.last().toDir() to it.dropLast(1).toInt(radix = 16) }
+            it.substringAfter("(#").dropLast(1).let { it.last().numberToDir() to it.dropLast(1).toInt(radix = 16) }
         }
         val (grid, border) = getGrid(instructions)
 
@@ -23,32 +25,21 @@ class Day18(
         return area + border / 2 + 1
     }
 
-    private fun getGrid(instructions: List<Pair<String, Int>>): Pair<ArrayList<Point>, Long> {
+    private fun getGrid(instructions: List<Pair<Direction, Int>>): Pair<ArrayList<Point>, Long> {
         var prev = 0 to 0
         val grid = ArrayList<Point>()
         var border = 0L
         for ((dir, steps) in instructions) {
             border += steps
-            when (dir) {
-                "R" -> {
-                    prev = prev.first to prev.second + steps
-                }
-
-                "L" -> {
-                    prev = prev.first to prev.second - steps
-                }
-
-                "U" -> {
-                    prev = prev.first - steps to prev.second
-                }
-
-                "D" -> {
-                    prev = prev.first + steps to prev.second
-                }
+            prev = when (dir) {
+                RIGHT -> prev.first to prev.second + steps
+                LEFT -> prev.first to prev.second - steps
+                UP -> prev.first - steps to prev.second
+                DOWN -> prev.first + steps to prev.second
             }
             grid.add(prev)
         }
-        return Pair(grid, border)
+        return grid to border
     }
 
     private fun getArea(grid: ArrayList<Point>): Long {
@@ -63,12 +54,22 @@ class Day18(
 
 }
 
-private fun Char.toDir(): String {
+private fun String.toDir(): Direction {
     return when (this) {
-        '0' -> "R"
-        '1' -> "D"
-        '2' -> "L"
-        '3' -> "U"
+        "R" -> RIGHT
+        "D" -> DOWN
+        "L" -> LEFT
+        "U" -> UP
+        else -> throw IllegalArgumentException("Invalid direction: $this")
+    }
+}
+
+private fun Char.numberToDir(): Direction {
+    return when (this) {
+        '0' -> RIGHT
+        '1' -> DOWN
+        '2' -> LEFT
+        '3' -> UP
         else -> throw IllegalArgumentException("Invalid direction: $this")
     }
 }
