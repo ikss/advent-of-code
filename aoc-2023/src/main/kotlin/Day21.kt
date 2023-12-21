@@ -10,7 +10,19 @@ class Day21(
     }
 
     fun part2(): Long {
-        return traverse(steps = 5000, infinite = true)
+        val steps = input.size / 2
+        
+        // find coefficients for quadratic polynom
+        val c1 = traverse(steps = steps, infinite = true)
+        val c2 = traverse(steps = steps + input.size, infinite = true)
+        val c3 = traverse(steps = steps + input.size * 2, infinite = true)
+
+        // after finding coefficients Wolfram Alpha was used to find the polynom
+        // https://www.wolframalpha.com/input?i=quadratic+fit+calculator&assumption=%7B%22F%22%2C+%22QuadraticFitCalculator%22%2C+%22data3x%22%7D+-%3E%22%7B0%2C+1%2C+2%7D%22&assumption=%7B%22F%22%2C+%22QuadraticFitCalculator%22%2C+%22data3y%22%7D+-%3E%22%7B3889%2C+34504%2C+95591%7D%22
+        val polynom = { x: Int -> 3889L + 15379L * x + 15236L * x * x }
+
+        val x = (26501365 - steps) / input.size
+        return polynom(x)
     }
 
     private fun traverse(steps: Int, infinite: Boolean): Long {
@@ -75,5 +87,5 @@ fun main() {
 
     val day = Day21("day21.txt")
     println("part1: ${day.part1()}")               //part1: 3746
-    println("part2: ${day.part2()}")               //part2: 
+    println("part2: ${day.part2()}")               //part2: 623540829615589
 }
