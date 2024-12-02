@@ -1,8 +1,8 @@
-class Day1(
-    file: String,
-) {
-    private val input = this::class.java.getResourceAsStream(file)!!.bufferedReader().readLines()
-
+class Day1 {
+    private val input = run {
+        this::class.java.getResourceAsStream(this::class.simpleName!!.lowercase() + ".txt")!!.bufferedReader().readLines()
+    }
+    
     fun part1(): Long {
         val first = ArrayList<Long>()
         val second = ArrayList<Long>()
@@ -51,8 +51,8 @@ class Day1(
 }
 
 fun main() {
-    val day1 = Day1("day1.txt")
-    println("part1: " + day1.part1()) // 2815556
-    println("part2: " + day1.part2()) // 23927637
+    val day = Day1()
+    println("part1: " + day.part1()) // 2815556
+    println("part2: " + day.part2()) // 23927637
 }
             
