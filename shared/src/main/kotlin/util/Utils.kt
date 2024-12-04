@@ -27,6 +27,15 @@ operator fun Point.plus(direction: Direction): Point {
     return first + dx to second + dy
 }
 
+fun Point.invert(): Point {
+    val (x, y) = this
+    return (if (x == 1) -1 else 1) to (if (y == 1) -1 else 1)
+}
+
+val diagonalDirections = listOf(-1 to -1, -1 to 1, 1 to -1, 1 to 1)
+val allDirections = listOf(-1 to -1, -1 to 0, -1 to 1, 0 to -1, 0 to 1, 1 to -1, 1 to 0, 1 to 1)
+val straightDirections = listOf(-1 to 0, 0 to -1, 0 to 1, 1 to 0)
+
 enum class Direction(val next: Point) {
     UP(-1 to 0),
     RIGHT(0 to 1),
