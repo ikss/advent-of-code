@@ -23,7 +23,7 @@ abstract class DayX {
         println("Time: $sw")
     }
 
-    fun evaluate() {
+    fun solve() {
         println("Day: ${this.javaClass.simpleName}")
         println("-----------------")
         runPart1()

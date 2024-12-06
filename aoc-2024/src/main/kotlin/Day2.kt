@@ -51,7 +51,7 @@ class Day2 : DayX() {
 
 fun main() {
     val day = Day2()
-    day.evaluate()
+    day.solve()
     // Part 1: 279
     // Part 2: 343
 }

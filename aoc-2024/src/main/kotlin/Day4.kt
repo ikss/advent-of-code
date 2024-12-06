@@ -77,7 +77,7 @@ class Day4 : DayX() {
 
 fun main() {
     val day = Day4()
-    day.evaluate()
+    day.solve()
     // Part 1: 2543
     // Part 2: 1930
 }

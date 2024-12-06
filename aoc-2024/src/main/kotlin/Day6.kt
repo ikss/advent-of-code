@@ -8,11 +8,10 @@ class Day6 : DayX() {
 
     private fun countPositions(): Long {
         val visited = HashSet<Point>()
-        val queue = java.util.ArrayDeque<Pair<Point, Direction>>()
-        queue.add(start to Direction.UP)
+        var curr = start to Direction.UP
 
-        while (queue.isNotEmpty()) {
-            val (point, direction) = queue.poll()
+        while (true) {
+            val (point, direction) = curr
             visited.add(point)
 
             val (nextr, nextc) = point + direction.next
@@ -20,10 +19,10 @@ class Day6 : DayX() {
             if (nextr !in grid.indices || nextc !in grid[nextr].indices) {
                 break
             }
-            if (grid[nextr][nextc] != '#') {
-                queue.add(nextr to nextc to direction)
+            curr = if (grid[nextr][nextc] != '#') {
+                nextr to nextc to direction
             } else {
-                queue.add(point to direction.getRight())
+                point to direction.getRight()
             }
         }
         return visited.size.toLong()
@@ -44,11 +43,10 @@ class Day6 : DayX() {
                 grid[i][j] = '#'
 
                 val visited = HashSet<Pair<Point, Direction>>()
-                val queue = java.util.ArrayDeque<Pair<Point, Direction>>()
-                queue.add(start to Direction.UP)
+                var curr = start to Direction.UP
 
-                while (queue.isNotEmpty()) {
-                    val (point, direction) = queue.poll()
+                while (true) {
+                    val (point, direction) = curr
 
                     if (visited.contains(point to direction)) {
                         result++
@@ -61,10 +59,10 @@ class Day6 : DayX() {
                     if (nextr !in grid.indices || nextc !in grid[0].indices) {
                         break
                     }
-                    if (grid[nextr][nextc] != '#') {
-                        queue.add(nextr to nextc to direction)
+                    curr = if (grid[nextr][nextc] != '#') {
+                        nextr to nextc to direction
                     } else {
-                        queue.add(point to direction.getRight())
+                        point to direction.getRight()
                     }
                 }
                 grid[i][j] = '.'
@@ -77,7 +75,7 @@ class Day6 : DayX() {
 
 fun main() {
     val day = Day6()
-    day.evaluate()
+    day.solve()
     // Part 1: 4883
     // Part 2: 1655
 }
