@@ -7,3 +7,7 @@
 plugins {
     id("org.jetbrains.kotlin.jvm")
 }
+
+dependencies {
+    api("com.google.guava:guava:32.0.0-jre")
+}

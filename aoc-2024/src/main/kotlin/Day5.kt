@@ -1,9 +1,6 @@
-class Day5 {
-    private val input = run {
-        this::class.java.getResourceAsStream(this::class.simpleName!!.lowercase() + ".txt")!!.bufferedReader().readLines()
-    }
-    private val rules = input.takeWhile { it.isNotBlank() }.map { it.split('|').map { it.toInt() } }
-    private val updates = input.takeLastWhile { it.isNotBlank() }.map { it.split(',').map { it.toInt() } }
+class Day5 : DayX() {
+    private val rules = input.takeWhile { it.isNotBlank() }.map { it.split('|').map(String::toInt) }
+    private val updates = input.takeLastWhile { it.isNotBlank() }.map { it.split(',').map(String::toInt) }
     private val ruleMap = HashMap<Int, HashSet<Int>>()
     private val comparator = Comparator<Int> { a, b ->
         if (ruleMap[a]?.contains(b) == true) -1 else 0
@@ -15,7 +12,7 @@ class Day5 {
         }
     }
 
-    fun part1(): Long {
+    override fun part1(): Long {
         var result = 0L
 
         for (update in updates) {
@@ -29,7 +26,7 @@ class Day5 {
 
     private fun isValid(update: List<Int>): Boolean = update.sortedWith(comparator) == update
 
-    fun part2(): Long {
+    override fun part2(): Long {
         val invalidUpdates = updates.filterNot { isValid(it) }
         var result = 0L
         
@@ -44,7 +41,8 @@ class Day5 {
 
 fun main() {
     val day = Day5()
-    println("part1: " + day.part1()) // 5374
-    println("part2: " + day.part2()) // 4260
+    day.evaluate()
+    // Part 1: 5374
+    // Part 2: 4260
 }
             

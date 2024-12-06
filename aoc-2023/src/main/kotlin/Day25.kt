@@ -1,5 +1,3 @@
-import util.UnionFind
-
 class Day25(
     file: String,
 ) {

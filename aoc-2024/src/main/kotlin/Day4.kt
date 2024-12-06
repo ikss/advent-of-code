@@ -1,11 +1,7 @@
-class Day4 {
-    private val input = run {
-        this::class.java.getResourceAsStream(this::class.simpleName!!.lowercase() + ".txt")!!.bufferedReader().readLines()
-    }
-
+class Day4 : DayX() {
     private val chars = listOf('X', 'M', 'A', 'S')
 
-    fun part1(): Long {
+    override fun part1(): Long {
         var result = 0L
         for (r in input.indices) {
             for (c in input[r].indices) {
@@ -51,10 +47,10 @@ class Day4 {
         return result
     }
 
-    fun part2(): Long {
+    override fun part2(): Long {
         var result = 0L
         for (r in 1 until input.size - 1) {
-            for (c in 1 until input[r].length - 1) {
+            for (c in 1 until input[0].length - 1) {
                 if (input[r][c] == 'A') {
                     if (found2(r, c, input)) {
                         result++
@@ -68,7 +64,7 @@ class Day4 {
     private fun found2(r: Int, c: Int, input: List<String>): Boolean {
         var count = 0
         
-        for (dir in diagonalDirections) {
+        for (dir in diagDirections) {
             val (dr, dc) = dir
             val (drinv, dcinv) = dir.invert()
             if (input[r + dr][c + dc] == 'M' && input[r + drinv][c + dcinv] == 'S') {
@@ -81,7 +77,8 @@ class Day4 {
 
 fun main() {
     val day = Day4()
-    println("part1: " + day.part1()) // 2543
-    println("part2: " + day.part2()) // 1930
+    day.evaluate()
+    // Part 1: 2543
+    // Part 2: 1930
 }
             

@@ -1,5 +1,3 @@
-package util
-
 class UnionFind<T : Any>(size: Int) {
     val root = HashMap<T, T>()
     val rank = HashMap<T, Int>()

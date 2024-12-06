@@ -1,9 +1,6 @@
-class Day2 {
-    private val input = run {
-        this::class.java.getResourceAsStream(this::class.simpleName!!.lowercase() + ".txt")!!.bufferedReader().readLines()
-    }
-    
-    fun part1(): Long {
+class Day2 : DayX() {
+
+    override fun part1(): Long {
         var result = 0L
         for (element in input) {
             val line = element.splitToNumbers().toList()
@@ -16,7 +13,7 @@ class Day2 {
 
     private fun checkSafe(line: List<Long>): Boolean {
         if (line[1] == line[0]) return false
-        val decreasing = if (line[1] > line[0]) false else true
+        val decreasing = line[1] <= line[0]
 
         for (i in 1 until line.size) {
             if (decreasing) {
@@ -32,7 +29,7 @@ class Day2 {
         return true
     }
 
-    fun part2(): Long {
+    override fun part2(): Long {
         var result = 0L
         for (element in input) {
             val line = element.splitToNumbers().toMutableList()
@@ -54,7 +51,7 @@ class Day2 {
 
 fun main() {
     val day = Day2()
-    println("part1: " + day.part1()) // 279
-    println("part2: " + day.part2()) // 343
+    day.evaluate()
+    // Part 1: 279
+    // Part 2: 343
 }
-            

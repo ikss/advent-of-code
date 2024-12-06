@@ -1,9 +1,6 @@
-class Day1 {
-    private val input = run {
-        this::class.java.getResourceAsStream(this::class.simpleName!!.lowercase() + ".txt")!!.bufferedReader().readLines()
-    }
-    
-    fun part1(): Long {
+class Day1 : DayX() {
+
+    override fun part1(): Long {
         val first = ArrayList<Long>()
         val second = ArrayList<Long>()
 
@@ -26,7 +23,7 @@ class Day1 {
         return result
     }
 
-    fun part2(): Long {
+    override fun part2(): Long {
         val first = ArrayList<Long>()
         val second = HashMap<Long, Int>()
 
@@ -52,7 +49,7 @@ class Day1 {
 
 fun main() {
     val day = Day1()
-    println("part1: " + day.part1()) // 2815556
-    println("part2: " + day.part2()) // 23927637
+    day.evaluate()
+    // Part 1: 2815556
+    // Part 2: 23927637
 }
-            
