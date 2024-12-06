@@ -148,7 +148,9 @@ fun main() {
     // Part 1: 4883
     // Part 2: 1655
     val sw = Stopwatch.createStarted()
-    println(day.part2optimized())
-    println(sw.stop())
+    val part2optimized = day.part2optimized()
+    println("Part 2 optimized:")
+    println("Result: $part2optimized")
+    println("Time: $sw")
 }
             
