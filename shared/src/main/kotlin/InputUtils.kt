@@ -2,10 +2,10 @@ fun DayX.readInput(): List<String> = this::class.java.getResourceAsStream(this::
 
 fun List<String>.toCharGrid(): List<CharArray> = this.map { it.toCharArray() }
 
-fun List<String>.findStart(vararg startChar: Char): Point {
+fun List<String>.findStart(vararg startChars: Char): Point {
     for (r in this.indices) {
         for (c in this[r].indices) {
-            if (this[r][c] in startChar) {
+            if (this[r][c] in startChars) {
                 return Point(r, c)
             }
         }
