@@ -26,11 +26,11 @@ class Day7 : DayX() {
         val first = nums.pollFirst()
         val second = nums.pollFirst()
         for (op in ops) {
-            nums.addFirst(op(first, second))
-            if (isValid(res, LinkedList(nums), ops)) {
+            val newNums = LinkedList(nums)
+            newNums.addFirst(op(first, second))
+            if (isValid(res, newNums, ops)) {
                 return true
             }
-            nums.pollFirst()
         }
         return false
     }
