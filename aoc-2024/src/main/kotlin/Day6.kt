@@ -153,4 +153,3 @@ fun main() {
     println("Result: $part2optimized")
     println("Time: $sw")
 }
-            
