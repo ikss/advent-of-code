@@ -16,3 +16,5 @@ fun List<String>.findStart(vararg startChars: Char): Point {
 fun mapToLong(s: String): Long? = s.trim().takeIf { it.isNotBlank() }?.toLong()
 
 fun String.splitToNumbers(delimiter: Char = ' '): Sequence<Long> = this.splitToSequence(delimiter).mapNotNull(::mapToLong)
+
+fun Long.concat(other: Long): Long = "$this$other".toLong()
