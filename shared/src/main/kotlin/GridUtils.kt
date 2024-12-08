@@ -1,6 +1,7 @@
 typealias Point = Pair<Int, Int>
 
 operator fun Point.plus(other: Point): Point = Point(this.first + other.first, this.second + other.second)
+operator fun Point.minus(other: Point): Point = Point(this.first - other.first, this.second - other.second)
 
 operator fun Point.plus(direction: Direction): Point {
     val (dx, dy) = direction.next
