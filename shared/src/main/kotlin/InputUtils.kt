@@ -1,8 +1,16 @@
 fun DayX.readInput(): List<String> = this::class.java.getResourceAsStream(this::class.simpleName!!.lowercase() + ".txt")!!.bufferedReader().readLines()
 
-fun List<String>.toCharGrid(): List<CharArray> = this.map { it.toCharArray() }
+typealias CharGrid = List<CharArray>
 
-fun List<String>.findStart(vararg startChars: Char): Point {
+fun List<String>.toCharGrid(): CharGrid = this.map { it.toCharArray() }
+
+operator fun CharGrid.contains(p: Point): Boolean = p.first in this.indices && p.second in this[p.first].indices
+operator fun CharGrid.get(p: Point): Char = this[p.first][p.second]
+operator fun CharGrid.set(p: Point, char: Char) {
+    this[p.first][p.second] = char
+}
+
+fun CharGrid.findStart(vararg startChars: Char): Point {
     for (r in this.indices) {
         for (c in this[r].indices) {
             if (this[r][c] in startChars) {
@@ -13,8 +21,7 @@ fun List<String>.findStart(vararg startChars: Char): Point {
     throw IllegalArgumentException("No start found")
 }
 
-
-fun List<String>.findStarts(vararg startChars: Char): List<Point> {
+fun CharGrid.findStarts(vararg startChars: Char): List<Point> {
     val result = ArrayList<Point>()
     for (r in this.indices) {
         for (c in this[r].indices) {

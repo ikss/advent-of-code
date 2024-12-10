@@ -2,7 +2,7 @@ import com.google.common.base.Stopwatch
 
 class Day6 : DayX() {
     private val grid = input.toCharGrid()
-    private val start = input.findStart('^')
+    private val start = grid.findStart('^')
 
     override fun part1(): Long {
         return countPositions()
@@ -16,13 +16,13 @@ class Day6 : DayX() {
             val (point, direction) = curr
             visited.add(point)
 
-            val (nextr, nextc) = point + direction.next
+            val next = point + direction.next
 
-            if (nextr !in grid.indices || nextc !in grid[nextr].indices) {
+            if (next !in grid) {
                 break
             }
-            curr = if (grid[nextr][nextc] != '#') {
-                nextr to nextc to direction
+            curr = if (grid[next] != '#') {
+                next to direction
             } else {
                 point to direction.getRight()
             }
@@ -84,25 +84,24 @@ class Day6 : DayX() {
             val (point, direction) = curr
             visited.add(curr)
 
-            val (nextr, nextc) = point + direction.next
+            val next = point + direction.next
 
-            if (nextr !in grid.indices || nextc !in grid[nextr].indices) {
+            if (next !in grid) {
                 break
             }
-            curr = if (grid[nextr][nextc] != '#') {
-                val nextPoint = nextr to nextc
-                if (nextPoint !in placedObstacles && start != nextPoint) {
-                    placedObstacles.add(nextPoint)
+            curr = if (grid[next] != '#') {
+                if (next !in placedObstacles && start != next) {
+                    placedObstacles.add(next)
                     
-                    val old = grid[nextr][nextc]
-                    grid[nextr][nextc] = '#'
+                    val old = grid[next]
+                    grid[next] = '#'
                     
                     if (hasCycle(point, direction.getRight(), visited)) {
                         result++
                     }
-                    grid[nextr][nextc] = old
+                    grid[next] = old
                 }
-                nextPoint to direction
+                next to direction
             } else {
                 point to direction.getRight()
             }
@@ -127,13 +126,13 @@ class Day6 : DayX() {
             }
             visited.add(point to direction)
 
-            val (nextr, nextc) = point + direction.next
+            val next = point + direction.next
 
-            if (nextr !in grid.indices || nextc !in grid[0].indices) {
+            if (next !in grid) {
                 break
             }
-            curr = if (grid[nextr][nextc] != '#') {
-                nextr to nextc to direction
+            curr = if (grid[next] != '#') {
+                next to direction
             } else {
                 point to direction.getRight()
             }

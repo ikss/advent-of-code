@@ -1,6 +1,6 @@
 class Day10 : DayX() {
     private val grid = input.toCharGrid()
-    private val starts = input.findStarts('0')
+    private val starts = grid.findStarts('0')
     private val trails = starts.map { getTrails(it) }
 
     override fun part1(): Long {
@@ -22,12 +22,12 @@ class Day10 : DayX() {
                 result.add(point)
                 continue
             }
-            val newChar = char + 1
+            val nextChar = char + 1
 
             for (dir in fourDirections) {
-                val (nr, nc) = point + dir
-                if (nr in grid.indices && nc in grid[0].indices && grid[nr][nc] == newChar) {
-                    queue.offer(Point(nr, nc) to newChar)
+                val next = point + dir
+                if (next in grid && grid[next] == nextChar) {
+                    queue.offer(next to nextChar)
                 }
             }
         }
