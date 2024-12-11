@@ -28,20 +28,20 @@ class Day11 : DayX() {
         return map.values.sum()
     }
 
-    private fun applyRules(num: Long): List<Long> =
-        when {
-            num == 0L -> listOf(1L)
-            num.toString().length % 2 == 0 -> {
-                val str = num.toString()
-                val leftHalf = str.substring(0, str.length / 2)
-                val rightHalf = str.substring(str.length / 2)
-                listOf(leftHalf.toLong(), rightHalf.replaceFirst("0+", "").toLongOrNull() ?: 0L)
-            }
-
-            else -> {
-                listOf(num * 2024)
-            }
+    private fun applyRules(num: Long): List<Long> {
+        if (num == 0L) {
+            return listOf(1L)
         }
+        val str = num.toString()
+        if (str.length % 2 == 0) {
+            val len = str.length / 2
+            val leftHalf = str.substring(0, len)
+            val rightHalf = str.substring(len)
+            return listOf(leftHalf.toLong(), rightHalf.replaceFirst("0+", "0").toLong())
+        }
+
+        return listOf(num * 2024)
+    }
 }
 
 fun main() {
