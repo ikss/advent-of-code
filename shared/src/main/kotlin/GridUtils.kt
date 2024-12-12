@@ -31,15 +31,15 @@ enum class Direction(val next: Point) {
                 || (this == DOWN && other == UP)
     }
 
-    fun getOpposite(other: Direction): Direction =
-        when (other) {
+    fun getOpposite(): Direction =
+        when (this) {
             UP -> DOWN
             RIGHT -> LEFT
             DOWN -> UP
             LEFT -> RIGHT
         }
     
-    fun getRight(): Direction =
+    fun getClockwise(): Direction =
         when (this) {
             UP -> RIGHT
             RIGHT -> DOWN
@@ -47,7 +47,7 @@ enum class Direction(val next: Point) {
             LEFT -> UP
         }
     
-    fun getLeft(): Direction =
+    fun getCounterClockwise(): Direction =
         when (this) {
             UP -> LEFT
             RIGHT -> UP

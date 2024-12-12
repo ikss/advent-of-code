@@ -24,7 +24,7 @@ class Day6 : DayX() {
             curr = if (grid[next] != '#') {
                 next to direction
             } else {
-                point to direction.getRight()
+                point to direction.getClockwise()
             }
         }
         return visited.size.toLong()
@@ -64,7 +64,7 @@ class Day6 : DayX() {
                     curr = if (grid[nextr][nextc] != '#') {
                         nextr to nextc to direction
                     } else {
-                        point to direction.getRight()
+                        point to direction.getClockwise()
                     }
                 }
                 grid[i][j] = '.'
@@ -96,14 +96,14 @@ class Day6 : DayX() {
                     val old = grid[next]
                     grid[next] = '#'
                     
-                    if (hasCycle(point, direction.getRight(), visited)) {
+                    if (hasCycle(point, direction.getClockwise(), visited)) {
                         result++
                     }
                     grid[next] = old
                 }
                 next to direction
             } else {
-                point to direction.getRight()
+                point to direction.getClockwise()
             }
         }
 
@@ -134,7 +134,7 @@ class Day6 : DayX() {
             curr = if (grid[next] != '#') {
                 next to direction
             } else {
-                point to direction.getRight()
+                point to direction.getClockwise()
             }
         }
         return false
