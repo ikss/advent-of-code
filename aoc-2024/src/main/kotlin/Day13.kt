@@ -1,26 +1,33 @@
 class Day13 : DayX() {
-
+    private val linesGrouped = input.chunked(4)
     private val costA = 3
     private val costB = 1
 
     override fun part1(): Long {
         var result = 0L
 
-        for (i in 0 until input.size - 2 step 4) {
-            val line1 = input[i]
-            val line2 = input[i + 1]
-            val line3 = input[i + 2]
-            result += solveEquation(line1, line2, line3, 0)
+        for (lines in linesGrouped) {
+            result += solveEquation(lines, 0)
         }
 
         return result
     }
 
-    private fun solveEquation(line1: String, line2: String, line3: String, addition: Long): Long {
-        val pattern = Regex("\\d+")
-        val (ax, ay) = pattern.findAll(line1).map { it.value.toLong() }.toList()
-        val (bx, by) = pattern.findAll(line2).map { it.value.toLong() }.toList()
-        val (prizex, prizey) = pattern.findAll(line3).map { it.value.toLong() + addition }.toList()
+    override fun part2(): Long {
+        var result = 0L
+
+        for (lines in linesGrouped) {
+            result += solveEquation(lines, 10000000000000)
+        }
+
+        return result
+    }
+
+    private fun solveEquation(lines: List<String>, addition: Long): Long {
+        val (line1, line2, line3) = lines
+        val (ax, ay) = line1.readAllNumbers()
+        val (bx, by) = line2.readAllNumbers()
+        val (prizex, prizey) = line3.readAllNumbers().map { it + addition }
 
         // equation 1 = a * ax + b * bx = prizex
         // equation 2 = a * ay + b * by = prizexy
@@ -39,20 +46,6 @@ class Day13 : DayX() {
         }
 
         return a * costA + b * costB
-    }
-
-
-    override fun part2(): Long {
-        var result = 0L
-
-        for (i in 0 until input.size - 2 step 4) {
-            val line1 = input[i]
-            val line2 = input[i + 1]
-            val line3 = input[i + 2]
-            result += solveEquation(line1, line2, line3, 10000000000000)
-        }
-
-        return result
     }
 
 }
