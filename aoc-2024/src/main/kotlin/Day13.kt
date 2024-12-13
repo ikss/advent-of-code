@@ -7,7 +7,7 @@ class Day13 : DayX() {
         var result = 0L
 
         for (i in 0 until input.size - 2 step 4) {
-            var line1 = input[i]
+            val line1 = input[i]
             val line2 = input[i + 1]
             val line3 = input[i + 2]
             result += solveEquation(line1, line2, line3, 0)
@@ -60,6 +60,6 @@ class Day13 : DayX() {
 fun main() {
     val day = Day13()
     day.solve()
-    // Part 1: 
-    // Part 2: 
+    // Part 1: 35082
+    // Part 2: 82570698600470
 }
