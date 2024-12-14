@@ -25,9 +25,9 @@ class Day13 : DayX() {
 
     private fun solveEquation(lines: List<String>, addition: Long): Long {
         val (line1, line2, line3) = lines
-        val (ax, ay) = line1.readAllNumbers()
-        val (bx, by) = line2.readAllNumbers()
-        val (prizex, prizey) = line3.readAllNumbers().map { it + addition }
+        val (ax, ay) = line1.readAllNumbers().toList()
+        val (bx, by) = line2.readAllNumbers().toList()
+        val (prizex, prizey) = line3.readAllNumbers().map { it + addition }.toList()
 
         // equation 1 = a * ax + b * bx = prizex
         // equation 2 = a * ay + b * by = prizexy
