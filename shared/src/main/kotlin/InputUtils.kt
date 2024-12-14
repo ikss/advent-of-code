@@ -1,7 +1,7 @@
 val NUMBER_PATTERN = Regex("\\d+")
 fun DayX.readInput(): List<String> = this::class.java.getResourceAsStream(this::class.simpleName!!.lowercase() + ".txt")!!.bufferedReader().readLines()
 
-fun String.readAllNumbers(): List<Long> = NUMBER_PATTERN.findAll(this).map { it.value.toLong() }.toList()
+fun String.readAllNumbers(): Sequence<Long> = NUMBER_PATTERN.findAll(this).map { it.value.toLong() }
 
 typealias CharGrid = List<CharArray>
 
