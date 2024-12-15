@@ -4,7 +4,6 @@ operator fun Point.plus(other: Point): Point = Point(this.first + other.first, t
 operator fun Point.minus(other: Point): Point = Point(this.first - other.first, this.second - other.second)
 
 operator fun Point.plus(direction: Direction): Point = this + direction.next
-
 operator fun Point.minus(direction: Direction): Point = this - direction.next
 
 fun Point.invert(): Point {
