@@ -24,6 +24,12 @@ fun CharGrid.findStart(vararg startChars: Char): Point {
     throw IllegalArgumentException("No start found")
 }
 
+fun CharGrid.print() {
+    for (row in this) {
+        println(row)
+    }
+}
+
 fun CharGrid.findStarts(vararg startChars: Char): List<Point> {
     val result = ArrayList<Point>()
     for (r in this.indices) {

@@ -3,10 +3,9 @@ typealias Point = Pair<Int, Int>
 operator fun Point.plus(other: Point): Point = Point(this.first + other.first, this.second + other.second)
 operator fun Point.minus(other: Point): Point = Point(this.first - other.first, this.second - other.second)
 
-operator fun Point.plus(direction: Direction): Point {
-    val (dx, dy) = direction.next
-    return first + dx to second + dy
-}
+operator fun Point.plus(direction: Direction): Point = this + direction.next
+
+operator fun Point.minus(direction: Direction): Point = this - direction.next
 
 fun Point.invert(): Point {
     val (x, y) = this
@@ -44,7 +43,7 @@ enum class Direction(val next: Point) {
             DOWN -> UP
             LEFT -> RIGHT
         }
-    
+
     fun getClockwise(): Direction =
         when (this) {
             UP -> RIGHT
@@ -52,7 +51,7 @@ enum class Direction(val next: Point) {
             DOWN -> LEFT
             LEFT -> UP
         }
-    
+
     fun getCounterClockwise(): Direction =
         when (this) {
             UP -> LEFT
@@ -60,4 +59,15 @@ enum class Direction(val next: Point) {
             DOWN -> RIGHT
             LEFT -> DOWN
         }
+
+    companion object {
+        fun fromChar(c: Char): Direction =
+            when (c.lowercaseChar()) {
+                'u', '^' -> UP
+                'r', '>' -> RIGHT
+                'd', 'v' -> DOWN
+                'l', '<' -> LEFT
+                else -> throw IllegalArgumentException("Invalid direction: $c")
+            }
+    }
 }
