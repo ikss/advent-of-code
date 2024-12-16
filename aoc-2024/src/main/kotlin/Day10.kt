@@ -1,6 +1,6 @@
 class Day10 : DayX() {
     private val grid = input.toCharGrid()
-    private val starts = grid.findStarts('0')
+    private val starts = grid.findAll('0')
     private val trails = starts.map { getTrails(it) }
 
     override fun part1(): Long {

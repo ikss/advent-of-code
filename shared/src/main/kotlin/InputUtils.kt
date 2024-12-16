@@ -13,7 +13,7 @@ operator fun CharGrid.set(p: Point, char: Char) {
     this[p.first][p.second] = char
 }
 
-fun CharGrid.findStart(vararg startChars: Char): Point {
+fun CharGrid.find(vararg startChars: Char): Point {
     for (r in this.indices) {
         for (c in this[r].indices) {
             if (this[r][c] in startChars) {
@@ -24,13 +24,7 @@ fun CharGrid.findStart(vararg startChars: Char): Point {
     throw IllegalArgumentException("No start found")
 }
 
-fun CharGrid.print() {
-    for (row in this) {
-        println(row)
-    }
-}
-
-fun CharGrid.findStarts(vararg startChars: Char): List<Point> {
+fun CharGrid.findAll(vararg startChars: Char): List<Point> {
     val result = ArrayList<Point>()
     for (r in this.indices) {
         for (c in this[r].indices) {
@@ -41,6 +35,12 @@ fun CharGrid.findStarts(vararg startChars: Char): List<Point> {
     }
     if (result.isEmpty()) throw IllegalArgumentException("No start found")
     return result
+}
+
+fun CharGrid.print() {
+    for (row in this) {
+        println(row)
+    }
 }
 
 fun mapToLong(s: String): Long? = s.trim().takeIf { it.isNotBlank() }?.toLong()

@@ -3,7 +3,7 @@ class Day15 : DayX() {
 
     override fun part1(): Long {
         val grid = input.takeWhile { it.isNotBlank() }.toCharGrid()
-        val start = grid.findStart('@')
+        val start = grid.find('@')
 
         move(start, grid, moves)
 
@@ -72,7 +72,7 @@ class Day15 : DayX() {
             }
             new
         }
-        val start = grid.findStart('@')
+        val start = grid.find('@')
 
         move2(start, grid, moves)
 

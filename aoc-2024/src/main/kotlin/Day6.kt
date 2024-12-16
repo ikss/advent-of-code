@@ -2,7 +2,7 @@ import com.google.common.base.Stopwatch
 
 class Day6 : DayX() {
     private val grid = input.toCharGrid()
-    private val start = grid.findStart('^')
+    private val start = grid.find('^')
 
     override fun part1(): Long {
         return countPositions()
