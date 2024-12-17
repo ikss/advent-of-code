@@ -74,7 +74,7 @@ class Day16 : DayX() {
                 }
             }
         }
-        return -1
+        return visited.size.toLong()
     }
 
 }
