@@ -50,7 +50,7 @@ class Day18 : DayX() {
         var min = 1024
         var max = input.size - 1
         while (min < max) {
-            val mid = (min + max) / 2
+            val mid = (max - min) / 2 + min
             val result = calc(71, mid)
             if (result == -1L) {
                 max = mid
