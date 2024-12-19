@@ -1,17 +1,13 @@
 class Day19 : DayX() {
+    private val towels = input[0].split(", ")
+    private val patterns = input.takeLastWhile { it.isNotEmpty() }
 
     override fun part1(): Long {
-        val towels = input[0].split(", ")
-
-        val patterns = input.takeLastWhile { it.isNotEmpty() }
 
         return patterns.count { canBreak(it, towels) > 0L }.toLong()
     }
 
     override fun part2(): Long {
-        val towels = input[0].split(", ")
-
-        val patterns = input.takeLastWhile { it.isNotEmpty() }
 
         return patterns.sumOf { canBreak(it, towels) }
     }
@@ -24,12 +20,12 @@ class Day19 : DayX() {
                 if (i < t.length - 1) {
                     continue
                 }
-                if (i == t.length - 1) {
-                    if (p.substring(0, i + 1) == t) {
+                if (p.substring(i - t.length + 1, i + 1) == t) {
+                    if (i == t.length - 1) {
                         dp[i] += 1L
+                    } else {
+                        dp[i] += dp[i - t.length]
                     }
-                } else if (dp[i - t.length] > 0 && p.substring(i - t.length + 1, i + 1) == t) {
-                    dp[i] += dp[i - t.length]
                 }
             }
         }
