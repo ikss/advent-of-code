@@ -21,7 +21,7 @@ fun CharGrid.find(vararg startChars: Char): Point {
             }
         }
     }
-    throw IllegalArgumentException("No start found")
+    throw IllegalArgumentException("No ${startChars.concatToString()} found")
 }
 
 fun CharGrid.findAll(vararg startChars: Char): List<Point> {
