@@ -11,25 +11,18 @@ class Day22 : DayX() {
     }
 
     override fun part2(): Long {
-        val map = HashMap<Int, HashMap<List<Int>, Int>>()
-        for ((i, line) in input.withIndex()) {
-            map[i] = HashMap()
+        val map = HashMap<List<Int>, Int>()
+        for (line in input) {
             val secretNumber = line.toLong()
-            generateNextNumberAndStore(secretNumber, 2000, i, map)
+            generateNextNumberAndStore(secretNumber, 2000, map)
         }
-        val sumMap = HashMap<List<Int>, Int>()
-
-        for ((_, values) in map) {
-            for ((k, v) in values) {
-                sumMap.merge(k, v, Int::plus)
-            }
-        }
-        return sumMap.values.max().toLong()
+        
+        return map.values.max().toLong()
     }
 
-    private fun generateNextNumberAndStore(currentNumber: Long, repeats: Int, buyer: Int, map: HashMap<Int, HashMap<List<Int>, Int>>): Long {
+    private fun generateNextNumberAndStore(currentNumber: Long, repeats: Int, map: HashMap<List<Int>, Int>): Long {
         var num = currentNumber
-        val buyerMap = map[buyer]!!
+        val buyerMap = HashSet<List<Int>>()
         val list = ArrayList<Int>(4)
 
         for (i in 0 until repeats) {
@@ -38,8 +31,9 @@ class Day22 : DayX() {
 
             list.add(newPrice - num.toInt() % 10)
             if (list.size == 4) {
-                if (list !in buyerMap) {
-                    buyerMap[ArrayList(list)] = newPrice
+                val key = ArrayList(list)
+                if (buyerMap.add(key)) {
+                    map.merge(key, newPrice, Int::plus)
                 }
                 list.removeAt(0)
             }
@@ -48,7 +42,6 @@ class Day22 : DayX() {
         }
         return num
     }
-
 
     private fun generateNextNumber(currentNumber: Long, repeats: Int): Long {
         var num = currentNumber
