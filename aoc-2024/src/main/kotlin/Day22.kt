@@ -1,6 +1,5 @@
 class Day22 : DayX() {
 
-
     override fun part1(): Long {
         var result = 0L
         for (line in input) {
@@ -13,10 +12,11 @@ class Day22 : DayX() {
 
     override fun part2(): Long {
         var result = 0L
+        val map = HashMap<Int, HashMap<List<Int>, Int>>()
         for ((i, line) in input.withIndex()) {
             map[i] = HashMap()
             val secretNumber = line.toLong()
-            result += generateNextNumberAndStore(secretNumber, 2000, i)
+            result += generateNextNumberAndStore(secretNumber, 2000, i, map)
         }
         val sumMap = HashMap<List<Int>, Int>()
 
@@ -28,9 +28,7 @@ class Day22 : DayX() {
         return sumMap.values.max().toLong()
     }
 
-    val map = HashMap<Int, HashMap<List<Int>, Int>>()
-
-    private fun generateNextNumberAndStore(currentNumber: Long, repeats: Int, buyer: Int): Long {
+    private fun generateNextNumberAndStore(currentNumber: Long, repeats: Int, buyer: Int, map: HashMap<Int, HashMap<List<Int>, Int>>): Long {
         var num = currentNumber
         val buyerMap = map[buyer]!!
         val list = ArrayList<Int>(4)
