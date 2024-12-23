@@ -3,12 +3,12 @@ class Day10 : DayX() {
     private val starts = grid.findAll('0')
     private val trails = starts.map { getTrails(it) }
 
-    override fun part1(): Long {
-        return trails.sumOf { it.toSet().size }.toLong()
+    override fun part1(): Any {
+        return trails.sumOf { it.toSet().size }
     }
 
-    override fun part2(): Long {
-        return trails.sumOf { it.size }.toLong()
+    override fun part2(): Any {
+        return trails.sumOf { it.size }
     }
 
     private fun getTrails(start: Pair<Int, Int>): List<Point> {

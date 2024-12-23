@@ -1,6 +1,6 @@
 class Day22 : DayX() {
 
-    override fun part1(): Long {
+    override fun part1(): Any {
         var result = 0L
         for (line in input) {
             val secretNumber = line.toLong()
@@ -10,14 +10,14 @@ class Day22 : DayX() {
         return result
     }
 
-    override fun part2(): Long {
+    override fun part2(): Any {
         val map = HashMap<List<Int>, Int>()
         for (line in input) {
             val secretNumber = line.toLong()
             generateNextNumberAndStore(secretNumber, 2000, map)
         }
         
-        return map.values.max().toLong()
+        return map.values.max()
     }
 
     private fun generateNextNumberAndStore(currentNumber: Long, repeats: Int, map: HashMap<List<Int>, Int>): Long {

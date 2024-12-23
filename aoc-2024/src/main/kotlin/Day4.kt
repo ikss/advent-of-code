@@ -1,7 +1,7 @@
 class Day4 : DayX() {
     private val chars = listOf('X', 'M', 'A', 'S')
 
-    override fun part1(): Long {
+    override fun part1(): Any {
         var result = 0L
         for (r in input.indices) {
             for (c in input[r].indices) {
@@ -47,7 +47,7 @@ class Day4 : DayX() {
         return result
     }
 
-    override fun part2(): Long {
+    override fun part2(): Any {
         var result = 0L
         for (r in 1 until input.size - 1) {
             for (c in 1 until input[0].length - 1) {

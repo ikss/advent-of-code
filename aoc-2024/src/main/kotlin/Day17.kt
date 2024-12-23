@@ -57,12 +57,11 @@ class Day17 : DayX() {
         }
     }
 
-    override fun part1(): Long {
+    override fun part1(): Any {
         val commands = input.takeLastWhile { it.isNotBlank() }.joinToString().readAllNumbers().toList()
         val registerA = input[0].readAllNumbers().first()
 
-        println(applyCommands(registerA, commands).joinToString(","))
-        return -1
+        return applyCommands(registerA, commands).joinToString(",")
     }
 
     private fun applyCommands(registerA: Long, commands: List<Long>): List<Long> {
@@ -82,7 +81,7 @@ class Day17 : DayX() {
         return state.output
     }
 
-    override fun part2(): Long {
+    override fun part2(): Any {
         val commandString = input.takeLastWhile { it.isNotBlank() }.joinToString().substringAfter(": ")
         val commands = commandString.readAllNumbers().toList()
 

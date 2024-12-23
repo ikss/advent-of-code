@@ -11,11 +11,11 @@ class Day8 : DayX() {
 
     }
 
-    override fun part1(): Long {
+    override fun part1(): Any {
         return countNodes(countOnlyFirst = true)
     }
 
-    override fun part2(): Long {
+    override fun part2(): Any {
         return countNodes(countOnlyFirst = false)
     }
 

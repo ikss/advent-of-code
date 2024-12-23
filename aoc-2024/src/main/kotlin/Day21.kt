@@ -1,19 +1,19 @@
 class Day21 : DayX() {
-//    +---+---+---+
-//    | 7 | 8 | 9 |
-//    +---+---+---+
-//    | 4 | 5 | 6 |
-//    +---+---+---+
-//    | 1 | 2 | 3 |
-//    +---+---+---+
-//        | 0 | A |
-//        +---+---+
-
-//        +---+---+
-//        | ^ | A |
-//    +---+---+---+
-//    | < | v | > |
-//    +---+---+---+
+    //    +---+---+---+
+    //    | 7 | 8 | 9 |
+    //    +---+---+---+
+    //    | 4 | 5 | 6 |
+    //    +---+---+---+
+    //    | 1 | 2 | 3 |
+    //    +---+---+---+
+    //        | 0 | A |
+    //        +---+---+
+    
+    //        +---+---+
+    //        | ^ | A |
+    //    +---+---+---+
+    //    | < | v | > |
+    //    +---+---+---+
     
     private val numericMoves = mapOf(
         'A' to listOf('0' to '<', '3' to '^'),
@@ -37,7 +37,7 @@ class Day21 : DayX() {
         '>' to listOf('v' to '<', 'A' to '^'),
     )
 
-    override fun part1(): Long {
+    override fun part1(): Any {
         return calculatePaths(3)
     }
 
@@ -116,7 +116,7 @@ class Day21 : DayX() {
         return result
     }
 
-    override fun part2(): Long {
+    override fun part2(): Any {
         return calculatePaths(26)
     }
 

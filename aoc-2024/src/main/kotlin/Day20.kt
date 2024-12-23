@@ -8,12 +8,11 @@ class Day20 : DayX() {
     )
 
     private val grid = input.toCharGrid()
-    private val map = TreeMap<Long, Long>()
     private val start = grid.find('S')
     private val end = grid.find('E')
     private val route = getRouteBfs()
 
-    override fun part1(): Long {
+    override fun part1(): Any {
         var result = 0L
         val seenCheats = hashSetOf<Pair<Point, Point>>()
 
@@ -39,8 +38,6 @@ class Day20 : DayX() {
             if (prev <= steps || prev - steps < 100 || !seenCheats.add(startPoint to newPoint)) {
                 return 0L
             }
-//            val old = map.getOrDefault(prev - steps, 0L)
-//            map[prev - steps] = old + 1
             return 1L
         }
         var result = 0L
@@ -54,11 +51,11 @@ class Day20 : DayX() {
         return result
     }
 
-    override fun part2(): Long {
+    override fun part2(): Any {
         var result = 0L
         val seenCheats = HashSet<Pair<Point, Point>>()
-        map.clear()
         val visited = route.visited.entries.toList()
+        
         for (i in visited.indices) {
             val (startPoint, startSteps) = visited[i]
             for (j in i + 1 until visited.size) {
@@ -70,12 +67,11 @@ class Day20 : DayX() {
                 }
                 val stepsSaved = endSteps - startSteps - stepsMade
                 if (stepsSaved >= 100 && seenCheats.add(startPoint to endPoint)) {
-                    map[stepsSaved] = map.getOrDefault(stepsSaved, 0) + 1
                     result++
                 }
             }
         }
-//        println(map)
+
         return result
     }
 
@@ -111,5 +107,5 @@ fun main() {
     val day = Day20()
     day.solve()
     // Part 1: 1395
-    // Part 2: 
+    // Part 2: 993178
 }

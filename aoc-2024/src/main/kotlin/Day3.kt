@@ -3,7 +3,7 @@ import java.util.*
 class Day3 : DayX() {
     private val joinedInput = input.joinToString("")
 
-    override fun part1(): Long {
+    override fun part1(): Any {
         val pattern = Regex("""mul\((\d{1,3}),(\d{1,3})\)""")
         var result = 0L
         val matches = pattern.findAll(joinedInput)
@@ -14,7 +14,7 @@ class Day3 : DayX() {
         return result
     }
 
-    override fun part2(): Long {
+    override fun part2(): Any {
         var result = 0L
         val doPattern = Regex("do\\(\\)")
         val dontPattern = Regex("don't\\(\\)")

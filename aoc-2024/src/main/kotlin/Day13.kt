@@ -3,7 +3,7 @@ class Day13 : DayX() {
     private val costA = 3
     private val costB = 1
 
-    override fun part1(): Long {
+    override fun part1(): Any {
         var result = 0L
 
         for (lines in linesGrouped) {
@@ -13,7 +13,7 @@ class Day13 : DayX() {
         return result
     }
 
-    override fun part2(): Long {
+    override fun part2(): Any {
         var result = 0L
 
         for (lines in linesGrouped) {

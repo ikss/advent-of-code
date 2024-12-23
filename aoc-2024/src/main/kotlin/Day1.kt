@@ -1,6 +1,6 @@
 class Day1 : DayX() {
 
-    override fun part1(): Long {
+    override fun part1(): Any {
         val first = ArrayList<Long>()
         val second = ArrayList<Long>()
 
@@ -23,7 +23,7 @@ class Day1 : DayX() {
         return result
     }
 
-    override fun part2(): Long {
+    override fun part2(): Any {
         val first = ArrayList<Long>()
         val second = HashMap<Long, Int>()
 

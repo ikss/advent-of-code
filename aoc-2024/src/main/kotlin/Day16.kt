@@ -3,7 +3,7 @@ import java.util.*
 class Day16 : DayX() {
     private data class State(val point: Point, val dir: Direction, val score: Long, val points: ArrayList<Point> = arrayListOf())
 
-    override fun part1(): Long {
+    override fun part1(): Any {
         val grid = input.toCharGrid()
         val start = grid.find('S')
         val end = grid.find('E')
@@ -35,7 +35,7 @@ class Day16 : DayX() {
         return -1
     }
 
-    override fun part2(): Long {
+    override fun part2(): Any {
         val grid = input.toCharGrid()
         val start = grid.find('S')
         val end = grid.find('E')

@@ -1,7 +1,7 @@
 class Day18 : DayX() {
 
 
-    override fun part1(): Long {
+    override fun part1(): Any {
         return calc(71, 1024)
     }
 
@@ -46,7 +46,7 @@ class Day18 : DayX() {
         return -1L
     }
 
-    override fun part2(): Long {
+    override fun part2(): Any {
         var min = 1024
         var max = input.size - 1
         while (min < max) {
@@ -58,8 +58,7 @@ class Day18 : DayX() {
                 min = mid + 1
             }
         }
-        println("Line $min: ${input[min - 1]}")
-        return min.toLong()
+        return "Line $min: ${input[min - 1]}"
     }
 }
 

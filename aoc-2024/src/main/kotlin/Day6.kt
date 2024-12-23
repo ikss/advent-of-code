@@ -4,7 +4,7 @@ class Day6 : DayX() {
     private val grid = input.toCharGrid()
     private val start = grid.find('^')
 
-    override fun part1(): Long {
+    override fun part1(): Any {
         return countPositions()
     }
 
@@ -30,7 +30,7 @@ class Day6 : DayX() {
         return visited.size.toLong()
     }
 
-    override fun part2(): Long {
+    override fun part2(): Any {
         return countObstructionPositions()
     }
 

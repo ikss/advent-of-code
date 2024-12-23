@@ -1,12 +1,12 @@
 class Day25 : DayX() {
 
-    override fun part1(): Long {
+    override fun part1(): Any {
         var result = 0L
 
         return result
     }
 
-    override fun part2(): Long {
+    override fun part2(): Any {
         var result = 0L
         
         return result

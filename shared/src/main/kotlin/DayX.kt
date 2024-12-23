@@ -3,10 +3,10 @@ import com.google.common.base.Stopwatch
 abstract class DayX {
     protected val input = readInput()
 
-    protected abstract fun part1(): Long
+    protected abstract fun part1(): Any
 
-    protected abstract fun part2(): Long
-    
+    protected abstract fun part2(): Any
+
     private fun runPart1() {
         val sw = Stopwatch.createStarted()
         val result = part1()

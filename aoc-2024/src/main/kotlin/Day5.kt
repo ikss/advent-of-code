@@ -12,7 +12,7 @@ class Day5 : DayX() {
         }
     }
 
-    override fun part1(): Long {
+    override fun part1(): Any {
         var result = 0L
 
         for (update in updates) {
@@ -26,7 +26,7 @@ class Day5 : DayX() {
 
     private fun isValid(update: List<Int>): Boolean = update.sortedWith(comparator) == update
 
-    override fun part2(): Long {
+    override fun part2(): Any {
         val invalidUpdates = updates.filterNot { isValid(it) }
         var result = 0L
         

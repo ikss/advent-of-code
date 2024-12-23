@@ -2,12 +2,12 @@ class Day19 : DayX() {
     private val towels = input[0].split(", ")
     private val patterns = input.takeLastWhile { it.isNotEmpty() }
 
-    override fun part1(): Long {
+    override fun part1(): Any {
 
-        return patterns.count { canBreak(it, towels) > 0L }.toLong()
+        return patterns.count { canBreak(it, towels) > 0L }
     }
 
-    override fun part2(): Long {
+    override fun part2(): Any {
 
         return patterns.sumOf { canBreak(it, towels) }
     }

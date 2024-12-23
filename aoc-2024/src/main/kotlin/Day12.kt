@@ -1,7 +1,7 @@
 class Day12 : DayX() {
     private val grid = input.toCharGrid()
 
-    override fun part1(): Long {
+    override fun part1(): Any {
         var result = 0L
 
         val visited = Array(grid.size) { BooleanArray(grid[0].size) }
@@ -39,7 +39,7 @@ class Day12 : DayX() {
         return perimeter * area
     }
 
-    override fun part2(): Long {
+    override fun part2(): Any {
         var result = 0L
 
         val visited = Array(grid.size) { BooleanArray(grid[0].size) }

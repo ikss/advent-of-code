@@ -8,7 +8,7 @@ class Day7 : DayX() {
         res.toLong() to operands.splitToNumbers().toList()
     }
 
-    override fun part1(): Long {
+    override fun part1(): Any {
         var result = 0L
         for ((res, operands) in operations) {
             val nums = LinkedList(operands)
@@ -35,7 +35,7 @@ class Day7 : DayX() {
         return false
     }
 
-    override fun part2(): Long {
+    override fun part2(): Any {
         var result = 0L
         for ((res, operands) in operations) {
             val nums = LinkedList(operands)

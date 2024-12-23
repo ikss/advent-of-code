@@ -1,6 +1,6 @@
 class Day2 : DayX() {
 
-    override fun part1(): Long {
+    override fun part1(): Any {
         var result = 0L
         for (element in input) {
             val line = element.splitToNumbers().toList()
@@ -29,7 +29,7 @@ class Day2 : DayX() {
         return true
     }
 
-    override fun part2(): Long {
+    override fun part2(): Any {
         var result = 0L
         for (element in input) {
             val line = element.splitToNumbers().toMutableList()

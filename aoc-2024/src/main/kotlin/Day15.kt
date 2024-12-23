@@ -1,7 +1,7 @@
 class Day15 : DayX() {
     private val moves = input.takeLastWhile { it.isNotBlank() }.joinToString("")
 
-    override fun part1(): Long {
+    override fun part1(): Any {
         val grid = input.takeWhile { it.isNotBlank() }.toCharGrid()
         val start = grid.find('@')
 
@@ -51,7 +51,7 @@ class Day15 : DayX() {
         return result
     }
 
-    override fun part2(): Long {
+    override fun part2(): Any {
         val moves = input.takeLastWhile { it.isNotBlank() }.joinToString("")
         val grid = input.takeWhile { it.isNotBlank() }.toCharGrid().map {
             val new = CharArray(it.size * 2) { '.' }

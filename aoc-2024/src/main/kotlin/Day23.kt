@@ -10,16 +10,16 @@ class Day23 : DayX() {
         }
     }
 
-    override fun part1(): Long {
+    override fun part1(): Any {
         val connected = getConnected(graph, 3, true)
 
-        return connected.count { it.any { it.startsWith("t") } }.toLong()
+        return connected.count { it.any { it.startsWith("t") } }
     }
 
-    override fun part2(): Long {
+    override fun part2(): Any {
         val getConnected = getConnected(graph, 13, false)
-        println(getConnected.maxBy { it.size }.joinToString(","))
-        return 0L
+        
+        return getConnected.maxBy { it.size }.joinToString(",")
     }
 
     private fun getConnected(graph: HashMap<String, HashSet<String>>, size: Int, all: Boolean): HashSet<List<String>> {
@@ -31,10 +31,10 @@ class Day23 : DayX() {
 
         for ((k, v) in graph) {
             val newGroups = ArrayList<HashSet<String>>()
-            
+
             for (group in groups) {
                 var found = false
-                
+
                 if (group.all { it in v }) {
                     found = true
                     val newGroup = HashSet(group)
@@ -45,7 +45,7 @@ class Day23 : DayX() {
                         newGroups.add(newGroup)
                     }
                 }
-                
+
                 if (all || !found) {
                     newGroups.add(group)
                 }

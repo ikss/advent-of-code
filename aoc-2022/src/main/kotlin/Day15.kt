@@ -11,7 +11,7 @@ class Day15 : DayX() {
         InputLine(sensorr to sensorc, beaconr to beaconc)
     }
 
-    override fun part1(): Long {
+    override fun part1(): Any {
         val goal = 2000000
         val taken = HashSet<Point>()
 
@@ -32,7 +32,7 @@ class Day15 : DayX() {
         return taken.size.toLong()
     }
 
-    override fun part2(): Long {
+    override fun part2(): Any {
         val max = 4000000L
         for (line in inputLines) {
             val surroundings = getSurrondings(line, max)

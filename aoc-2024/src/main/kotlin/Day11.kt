@@ -1,11 +1,11 @@
 class Day11 : DayX() {
     private val sequence = input.joinToString("").splitToNumbers(' ')
 
-    override fun part1(): Long {
+    override fun part1(): Any {
         return solve(25)
     }
 
-    override fun part2(): Long {
+    override fun part2(): Any {
         return solve(75)
     }
 

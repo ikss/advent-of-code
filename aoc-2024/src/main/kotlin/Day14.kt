@@ -18,7 +18,7 @@ class Day14 : DayX() {
         }.toList()
     }
 
-    override fun part1(): Long {
+    override fun part1(): Any {
         val robots = getRobots()
         for (r in robots) {
             val newPos = getPositionAfter(r, 100)
@@ -47,7 +47,7 @@ class Day14 : DayX() {
         return result
     }
 
-    override fun part2(): Long {
+    override fun part2(): Any {
         val robots = getRobots()
         var result = 0L
         while (true) {

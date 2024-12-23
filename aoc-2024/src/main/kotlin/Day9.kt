@@ -45,7 +45,7 @@ class Day9 : DayX() {
         }
     }
 
-    override fun part1(): Long {
+    override fun part1(): Any {
         val sb = StringBuilder(line)
         val list = ArrayList<Int>()
 
@@ -90,7 +90,7 @@ class Day9 : DayX() {
         return result
     }
 
-    override fun part2(): Long {
+    override fun part2(): Any {
         val head: DiskNode = DummyNode()
         var curr = head
         var start = 0
