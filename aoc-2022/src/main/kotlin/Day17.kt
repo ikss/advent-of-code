@@ -46,7 +46,7 @@ class Day17 : DayX() {
     }
     
     private data class State(
-        val row: List<Char>,
+        val row: String,
         val movement: Int,
         val rock: Int,
     )
@@ -61,7 +61,7 @@ class Day17 : DayX() {
         for (i in 0 until 1000000L) {
             val rockIndex = (i % rocks.size).toInt()
 
-            val level = (0..6).map { grid[maxLevel to it] }.map { it ?: '.' }
+            val level = (0..6).map { grid[maxLevel to it] }.map { it ?: '.' }.joinToString("")
             val currState = State(level, currMove, rockIndex)
             if (currState in cycleState) {
                 val cycleLength = i - cycleState[currState]!!
