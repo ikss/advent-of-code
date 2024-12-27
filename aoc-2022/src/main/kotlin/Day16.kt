@@ -33,29 +33,7 @@ class Day16 : DayX() {
             }
         }
 
-        for (node in graph.keys) {
-            countBfs(node)
-        }
-    }
-
-    private fun countBfs(node: String) {
-        val queue = java.util.ArrayDeque<Pair<String, Int>>()
-        queue.offer(node to 0)
-        val visited = HashSet<String>()
-
-        while (queue.isNotEmpty()) {
-            val (curr, currDist) = queue.poll()
-            val newDist = currDist + 1
-            visited.add(curr)
-
-            for (next in graph[curr]!!) {
-                if (next !in visited) {
-                    queue.offer(next to newDist)
-                    countedDistances[node to next] = newDist
-                    countedDistances[next to node] = newDist
-                }
-            }
-        }
+        countAllGraphDistances(graph, countedDistances)
     }
 
     override fun part1(): Any {
@@ -69,14 +47,6 @@ class Day16 : DayX() {
     private data class State(
         val curr: String,
         val left: Int,
-        val bitmask: Long,
-    )
-
-    private data class State2(
-        val curr1: String,
-        val curr2: String,
-        val left1: Int,
-        val left2: Int,
         val bitmask: Long,
     )
 
@@ -135,5 +105,5 @@ fun main() {
     val day = Day16()
     day.solve()
     // Part 1: 1991
-    // Part 2: 
+    // Part 2: 2705
 }
