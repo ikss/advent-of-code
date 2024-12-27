@@ -1,4 +1,5 @@
 typealias Point = Pair<Int, Int>
+typealias LongPoint = Pair<Long, Long>
 
 operator fun Point.plus(other: Point): Point = Point(this.first + other.first, this.second + other.second)
 operator fun Point.minus(other: Point): Point = Point(this.first - other.first, this.second - other.second)
