@@ -1,4 +1,4 @@
-class Day20 : DayX() {
+class Day20(title: String) : DayX(title) {
 
     private data class Node(val value: Long) {
         var prev: Node? = null
@@ -82,7 +82,7 @@ class Day20 : DayX() {
 }
 
 fun main() {
-    val day = Day20()
+    val day = Day20("Day 20: Grove Positioning System")
     day.solve()
     // Part 1: 2215
     // Part 2: 8927480683
