@@ -11,16 +11,16 @@ abstract class DayX {
         val sw = Stopwatch.createStarted()
         val result = part1()
         println("Part 1:")
-        println("Result: $result")
-        println("Time: $sw")
+        println(" - Result: $result")
+        println(" - Time: $sw")
     }
 
     private fun runPart2() {
         val sw = Stopwatch.createStarted()
         val result = part2()
         println("Part 2:")
-        println("Result: $result")
-        println("Time: $sw")
+        println(" - Result: $result")
+        println(" - Time: $sw")
     }
 
     fun solve() {
