@@ -32,4 +32,3 @@ abstract class DayX(val dayTitle: String = "") {
         println("-----------------")
     }
 }
-            

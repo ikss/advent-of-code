@@ -1,4 +1,4 @@
-class DayXtemplate : DayX() {
+class DayXtemplate(title: String) : DayX(title) {
 
     override fun part1(): Long {
         return 0L
@@ -10,9 +10,8 @@ class DayXtemplate : DayX() {
 }
 
 fun main() {
-    val day = DayXtemplate()
+    val day = DayXtemplate("")
     day.solve()
     // Part 1: 
     // Part 2: 
 }
-            
