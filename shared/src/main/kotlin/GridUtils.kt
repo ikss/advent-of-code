@@ -18,7 +18,7 @@ fun Point.manhattanDistance(other: Point): Int {
     return Math.abs(x1 - x2) + Math.abs(y1 - y2)
 }
 
-val fourDirections = listOf(-1 to 0, 0 to -1, 0 to 1, 1 to 0)
+val baseDirections = listOf(-1 to 0, 0 to -1, 0 to 1, 1 to 0)
 val diagDirections = listOf(-1 to -1, -1 to 1, 1 to -1, 1 to 1)
 val allDirections = listOf(-1 to -1, -1 to 0, -1 to 1, 0 to -1, 0 to 1, 1 to -1, 1 to 0, 1 to 1)
 

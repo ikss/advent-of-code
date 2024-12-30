@@ -25,7 +25,7 @@ class Day12(title: String) : DayX(title) {
         while (queue.isNotEmpty()) {
             val curr = queue.poll()
             area++
-            for (dir in fourDirections) {
+            for (dir in baseDirections) {
                 val next = curr + dir
                 if (next !in grid || grid[next] != grid[r][c]) {
                     perimeter++

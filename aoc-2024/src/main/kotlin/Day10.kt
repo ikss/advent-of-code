@@ -24,7 +24,7 @@ class Day10(title: String) : DayX(title) {
             }
             val nextChar = char + 1
 
-            for (dir in fourDirections) {
+            for (dir in baseDirections) {
                 val next = point + dir
                 if (next in grid && grid[next] == nextChar) {
                     queue.offer(next to nextChar)
