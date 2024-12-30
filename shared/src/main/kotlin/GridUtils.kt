@@ -60,6 +60,14 @@ enum class Direction(val next: Point) {
             LEFT -> DOWN
         }
 
+    fun getChar(): Char =
+        when (this) {
+            UP -> '^'
+            RIGHT -> '>'
+            DOWN -> 'v'
+            LEFT -> '<'
+        }
+
     companion object {
         fun fromChar(c: Char): Direction =
             when (c.lowercaseChar()) {

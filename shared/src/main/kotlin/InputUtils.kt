@@ -8,7 +8,10 @@ typealias CharGrid = List<CharArray>
 fun List<String>.toCharGrid(): CharGrid = this.map { it.toCharArray() }
 
 operator fun CharGrid.contains(p: Point): Boolean = p.first in this.indices && p.second in this[p.first].indices
-operator fun CharGrid.get(p: Point): Char = this[p.first][p.second]
+operator fun CharGrid.get(p: Point): Char {
+    if (p !in this) throw IllegalArgumentException("Point $p is out of bounds ${this.size}x${this[0].size}")
+    return this[p.first][p.second]
+}
 operator fun CharGrid.set(p: Point, char: Char) {
     this[p.first][p.second] = char
 }
