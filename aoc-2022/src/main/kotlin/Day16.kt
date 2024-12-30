@@ -1,4 +1,4 @@
-class Day16 : DayX() {
+class Day16(title: String) : DayX(title) {
     private data class InputLine(
         val sensor: String,
         val flow: Long,
@@ -102,7 +102,7 @@ class Day16 : DayX() {
 }
 
 fun main() {
-    val day = Day16()
+    val day = Day16("Day 16: Proboscidea Volcanium")
     day.solve()
     // Part 1: 1991
     // Part 2: 2705

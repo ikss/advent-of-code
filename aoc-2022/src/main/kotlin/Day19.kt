@@ -1,7 +1,7 @@
 import java.util.*
 import kotlin.math.ceil
 
-class Day19 : DayX() {
+class Day19(title: String) : DayX(title) {
     private val blueprints = input.map { Blueprint.from(it) }
 
     private enum class Mineral {
@@ -141,7 +141,7 @@ class Day19 : DayX() {
 }
 
 fun main() {
-    val day = Day19()
+    val day = Day19("Day 19: Not Enough Minerals")
     day.solve()
     // Part 1: 1427
     // Part 2: 4400

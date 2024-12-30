@@ -1,4 +1,4 @@
-class Day8 : DayX() {
+class Day8(title: String) : DayX(title) {
     private val antennas = buildMap<Char, MutableList<Point>> {
         for (r in input.indices) {
             for (c in input[r].indices) {
@@ -55,7 +55,7 @@ class Day8 : DayX() {
 }
 
 fun main() {
-    val day = Day8()
+    val day = Day8("Day 8: Resonant Collinearity")
     day.solve()
     // Part 1: 278
     // Part 2: 1067

@@ -1,4 +1,4 @@
-class Day15 : DayX() {
+class Day15(title: String) : DayX(title) {
     private val moves = input.takeLastWhile { it.isNotBlank() }.joinToString("")
 
     override fun part1(): Any {
@@ -173,7 +173,7 @@ class Day15 : DayX() {
 }
 
 fun main() {
-    val day = Day15()
+    val day = Day15("Day 15: Warehouse Woes")
     day.solve()
     // Part 1: 1559280
     // Part 2: 1576353

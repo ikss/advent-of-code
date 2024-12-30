@@ -1,6 +1,6 @@
 import java.util.*
 
-class Day24 : DayX() {
+class Day24(title: String) : DayX(title) {
     enum class Operation(val operation: (Int, Int) -> Int) {
         AND({ a, b -> a and b }),
         OR({ a, b -> a or b }),
@@ -170,7 +170,7 @@ class Day24 : DayX() {
 }
 
 fun main() {
-    val day = Day24()
+    val day = Day24("Day 24: Crossed Wires")
     day.solve()
     // Part 1: 57632654722854
     // Part 2: ckj,dbp,fdv,kdf,rpp,z15,z23,z39

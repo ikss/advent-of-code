@@ -1,5 +1,4 @@
-class Day18 : DayX() {
-
+class Day18(title: String) : DayX(title) {
 
     override fun part1(): Any {
         return calc(71, 1024)
@@ -63,7 +62,7 @@ class Day18 : DayX() {
 }
 
 fun main() {
-    val day = Day18()
+    val day = Day18("Day 18: RAM Run")
     day.solve()
     // Part 1: 252
     // Part 2: line 3035, 5,60

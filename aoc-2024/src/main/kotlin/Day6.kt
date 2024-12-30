@@ -1,6 +1,6 @@
 import com.google.common.base.Stopwatch
 
-class Day6 : DayX() {
+class Day6(title: String) : DayX(title) {
     private val grid = input.toCharGrid()
     private val start = grid.find('^')
 
@@ -142,7 +142,7 @@ class Day6 : DayX() {
 }
 
 fun main() {
-    val day = Day6()
+    val day = Day6("Day 6: Guard Gallivant")
     day.solve()
     // Part 1: 4883
     // Part 2: 1655

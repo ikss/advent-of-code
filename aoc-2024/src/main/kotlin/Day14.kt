@@ -1,4 +1,4 @@
-class Day14 : DayX() {
+class Day14(title: String) : DayX(title) {
 
     private data class Robot(
         var position: Point,
@@ -103,7 +103,7 @@ class Day14 : DayX() {
 }
 
 fun main() {
-    val day = Day14()
+    val day = Day14("Day 14: Restroom Redoubt")
     day.solve()
     // Part 1: 229839456
     // Part 2: 7138

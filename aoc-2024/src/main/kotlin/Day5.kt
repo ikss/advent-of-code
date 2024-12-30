@@ -1,4 +1,4 @@
-class Day5 : DayX() {
+class Day5(title: String) : DayX(title) {
     private val rules = input.takeWhile { it.isNotBlank() }.map { it.split('|').map(String::toInt) }
     private val updates = input.takeLastWhile { it.isNotBlank() }.map { it.split(',').map(String::toInt) }
     private val ruleMap = HashMap<Int, HashSet<Int>>()
@@ -40,7 +40,7 @@ class Day5 : DayX() {
 }
 
 fun main() {
-    val day = Day5()
+    val day = Day5("Day 5: Print Queue")
     day.solve()
     // Part 1: 5374
     // Part 2: 4260

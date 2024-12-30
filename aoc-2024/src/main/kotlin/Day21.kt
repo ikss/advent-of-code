@@ -1,4 +1,4 @@
-class Day21 : DayX() {
+class Day21(title: String) : DayX(title) {
     //    +---+---+---+
     //    | 7 | 8 | 9 |
     //    +---+---+---+
@@ -123,7 +123,7 @@ class Day21 : DayX() {
 }
 
 fun main() {
-    val day = Day21()
+    val day = Day21("Day 21: Keypad Conundrum")
     day.solve()
     // Part 1: 176870
     // Part 2: 223902935165512

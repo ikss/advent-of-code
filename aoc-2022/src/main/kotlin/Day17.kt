@@ -1,4 +1,4 @@
-class Day17 : DayX() {
+class Day17(title: String) : DayX(title) {
     private val movements = input[0]
 
     private val rocks = listOf(
@@ -109,7 +109,7 @@ class Day17 : DayX() {
 }
 
 fun main() {
-    val day = Day17()
+    val day = Day17("Day 17: Pyroclastic Flow")
     day.solve()
     // Part 1: 3127
     // Part 2: 1542941176480

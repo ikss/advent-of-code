@@ -1,4 +1,4 @@
-class Day4 : DayX() {
+class Day4(title: String) : DayX(title) {
     private val chars = listOf('X', 'M', 'A', 'S')
 
     override fun part1(): Any {
@@ -76,7 +76,7 @@ class Day4 : DayX() {
 }
 
 fun main() {
-    val day = Day4()
+    val day = Day4("Day 4: Ceres Search")
     day.solve()
     // Part 1: 2543
     // Part 2: 1930

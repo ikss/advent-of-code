@@ -1,4 +1,4 @@
-class Day9 : DayX() {
+class Day9(title: String) : DayX(title) {
     private val line = input.joinToString("")
 
     sealed interface DiskNode {
@@ -169,7 +169,7 @@ class Day9 : DayX() {
 }
 
 fun main() {
-    val day = Day9()
+    val day = Day9("Day 9: Disk Fragmenter")
     day.solve()
     // Part 1: 6344673854800
     // Part 2: 6360363199987

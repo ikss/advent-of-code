@@ -1,4 +1,4 @@
-class Day19 : DayX() {
+class Day19(title: String) : DayX(title) {
     private val towels = input[0].split(", ")
     private val patterns = input.takeLastWhile { it.isNotEmpty() }
 
@@ -35,7 +35,7 @@ class Day19 : DayX() {
 }
 
 fun main() {
-    val day = Day19()
+    val day = Day19("Day 19: Linen Layout")
     day.solve()
     // Part 1: 278
     // Part 2: 569808947758890

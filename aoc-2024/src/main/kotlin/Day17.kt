@@ -1,4 +1,4 @@
-class Day17 : DayX() {
+class Day17(title: String) : DayX(title) {
 
     private class State {
         var registerA: Long = 0
@@ -106,7 +106,7 @@ class Day17 : DayX() {
 }
 
 fun main() {
-    val day = Day17()
+    val day = Day17("Day 17: Chronospatial Computer")
     day.solve()
     // Part 1: 4,1,7,6,4,1,0,2,7
     // Part 2: 164279024971453

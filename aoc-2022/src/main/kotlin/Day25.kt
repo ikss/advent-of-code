@@ -1,6 +1,6 @@
 import kotlin.math.pow
 
-class Day25 : DayX() {
+class Day25(title: String) : DayX(title) {
 
     override fun part1(): Any {
         var numericResult = 0L
@@ -65,7 +65,7 @@ class Day25 : DayX() {
 }
 
 fun main() {
-    val day = Day25()
+    val day = Day25("Day 25: Full of Hot Air")
     day.solve()
     // Part 1: 20-1-0=-2=-2220=0011
     // Part 2: 

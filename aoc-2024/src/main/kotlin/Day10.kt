@@ -1,4 +1,4 @@
-class Day10 : DayX() {
+class Day10(title: String) : DayX(title) {
     private val grid = input.toCharGrid()
     private val starts = grid.findAll('0')
     private val trails = starts.map { getTrails(it) }
@@ -38,7 +38,7 @@ class Day10 : DayX() {
 }
 
 fun main() {
-    val day = Day10()
+    val day = Day10("Day 10: Hoof It")
     day.solve()
     // Part 1: 825
     // Part 2: 1805

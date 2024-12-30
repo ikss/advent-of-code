@@ -1,6 +1,6 @@
 import java.util.*
 
-class Day16 : DayX() {
+class Day16(title: String) : DayX(title) {
     private data class State(val point: Point, val dir: Direction, val score: Long, val points: ArrayList<Point> = arrayListOf())
 
     override fun part1(): Any {
@@ -80,7 +80,7 @@ class Day16 : DayX() {
 }
 
 fun main() {
-    val day = Day16()
+    val day = Day16("Day 16: Reindeer Maze")
     day.solve()
     // Part 1: 123540
     // Part 2: 665

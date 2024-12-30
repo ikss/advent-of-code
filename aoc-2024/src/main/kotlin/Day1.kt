@@ -1,4 +1,4 @@
-class Day1 : DayX() {
+class Day1(title: String) : DayX(title) {
 
     override fun part1(): Any {
         val first = ArrayList<Long>()
@@ -48,7 +48,7 @@ class Day1 : DayX() {
 }
 
 fun main() {
-    val day = Day1()
+    val day = Day1("Day 1: Historian Hysteria")
     day.solve()
     // Part 1: 2815556
     // Part 2: 23927637

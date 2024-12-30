@@ -1,6 +1,6 @@
 import java.util.*
 
-class Day20 : DayX() {
+class Day20(title: String) : DayX(title) {
     private data class State(
         val point: Point,
         val steps: Long,
@@ -104,7 +104,7 @@ class Day20 : DayX() {
 }
 
 fun main() {
-    val day = Day20()
+    val day = Day20("Day 20: Race Condition")
     day.solve()
     // Part 1: 1395
     // Part 2: 993178

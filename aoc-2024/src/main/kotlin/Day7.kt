@@ -2,7 +2,7 @@ import java.util.*
 
 private typealias LongOperation = (Long, Long) -> Long
 
-class Day7 : DayX() {
+class Day7(title: String) : DayX(title) {
     private val operations = input.map {
         val (res, operands) = it.split(':')
         res.toLong() to operands.splitToNumbers().toList()
@@ -49,7 +49,7 @@ class Day7 : DayX() {
 }
 
 fun main() {
-    val day = Day7()
+    val day = Day7("Day 7: Bridge Repair")
     day.solve()
     // Part 1: 2437272016585
     // Part 2: 162987117690649

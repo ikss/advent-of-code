@@ -1,6 +1,6 @@
 import com.google.common.base.Stopwatch
 
-abstract class DayX(val dayTitle: String = "") {
+abstract class DayX(val title: String = "") {
     protected val input = readInput()
 
     protected abstract fun part1(): Any
@@ -24,7 +24,7 @@ abstract class DayX(val dayTitle: String = "") {
     }
 
     fun solve() {
-        println(if (dayTitle.isEmpty()) this.javaClass.simpleName else dayTitle)
+        println(if (title.isEmpty()) this.javaClass.simpleName else title)
         println("-----------------")
         runPart1()
         println("-----------------")

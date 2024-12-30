@@ -1,4 +1,4 @@
-class Day11 : DayX() {
+class Day11(title: String) : DayX(title) {
     private val sequence = input.joinToString("").splitToNumbers(' ')
 
     override fun part1(): Any {
@@ -45,7 +45,7 @@ class Day11 : DayX() {
 }
 
 fun main() {
-    val day = Day11()
+    val day = Day11("Day 11: Plutonian Pebbles")
     day.solve()
     // Part 1: 186424
     // Part 2: 219838428124832

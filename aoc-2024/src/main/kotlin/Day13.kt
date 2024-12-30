@@ -1,4 +1,4 @@
-class Day13 : DayX() {
+class Day13(title: String) : DayX(title) {
     private val linesGrouped = input.chunked(4)
     private val costA = 3
     private val costB = 1
@@ -51,7 +51,7 @@ class Day13 : DayX() {
 }
 
 fun main() {
-    val day = Day13()
+    val day = Day13("Day 13: Claw Contraption")
     day.solve()
     // Part 1: 35082
     // Part 2: 82570698600470

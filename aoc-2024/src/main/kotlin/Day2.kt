@@ -1,4 +1,4 @@
-class Day2 : DayX() {
+class Day2(title: String) : DayX(title) {
 
     override fun part1(): Any {
         var result = 0L
@@ -50,7 +50,7 @@ class Day2 : DayX() {
 }
 
 fun main() {
-    val day = Day2()
+    val day = Day2("Day 2: Red-Nosed Reports")
     day.solve()
     // Part 1: 279
     // Part 2: 343

@@ -1,4 +1,4 @@
-class Day18 : DayX() {
+class Day18(title: String) : DayX(title) {
     private val moves = listOf(-1, 1)
     private val grid = HashMap<Triple<Int, Int, Int>, Int>()
     private val droplets = input.map {
@@ -108,7 +108,7 @@ class Day18 : DayX() {
 }
 
 fun main() {
-    val day = Day18()
+    val day = Day18("Day 18: Boiling Boulders")
     day.solve()
     // Part 1: 4192
     // Part 2: 2520

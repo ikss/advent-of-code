@@ -1,4 +1,4 @@
-class Day12 : DayX() {
+class Day12(title: String) : DayX(title) {
     private val grid = input.toCharGrid()
 
     override fun part1(): Any {
@@ -86,7 +86,7 @@ class Day12 : DayX() {
 }
 
 fun main() {
-    val day = Day12()
+    val day = Day12("Day 12: Garden Groups")
     day.solve()
     // Part 1: 1363682
     // Part 2: 787680

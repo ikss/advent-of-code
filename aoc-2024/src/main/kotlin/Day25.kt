@@ -1,4 +1,4 @@
-class Day25 : DayX() {
+class Day25(title: String) : DayX(title) {
 
     override fun part1(): Any {
         val blocks = input.joinToString("\n").split("\n\n").map { it.split("\n") }
@@ -37,7 +37,7 @@ class Day25 : DayX() {
 }
 
 fun main() {
-    val day = Day25()
+    val day = Day25("Day 25: Code Chronicle")
     day.solve()
     // Part 1: 3196
     // Part 2: 

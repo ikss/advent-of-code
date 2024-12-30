@@ -1,6 +1,6 @@
 import java.util.*
 
-class Day3 : DayX() {
+class Day3(title: String) : DayX(title) {
     private val joinedInput = input.joinToString("")
 
     override fun part1(): Any {
@@ -42,7 +42,7 @@ class Day3 : DayX() {
 }
 
 fun main() {
-    val day = Day3()
+    val day = Day3("Day 3: Mull It Over")
     day.solve()
     // Part 1: 175615763
     // Part 2: 74361272

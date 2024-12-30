@@ -1,4 +1,4 @@
-class Day23 : DayX() {
+class Day23(title: String) : DayX(title) {
     private val graph = HashMap<String, HashSet<String>>()
 
     init {
@@ -57,7 +57,7 @@ class Day23 : DayX() {
 }
 
 fun main() {
-    val day = Day23()
+    val day = Day23("Day 23: LAN Party")
     day.solve()
     // Part 1: 1306
     // Part 2: bd,dk,ir,ko,lk,nn,ob,pt,te,tl,uh,wj,yl

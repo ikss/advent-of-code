@@ -1,4 +1,4 @@
-class Day15 : DayX() {
+class Day15(title: String) : DayX(title) {
     private data class InputLine(
         val sensor: Point,
         val beacon: Point,
@@ -76,7 +76,7 @@ class Day15 : DayX() {
 }
 
 fun main() {
-    val day = Day15()
+    val day = Day15("Day 15: Beacon Exclusion Zone")
     day.solve()
     // Part 1: 5108096
     // Part 2: 10553942650264

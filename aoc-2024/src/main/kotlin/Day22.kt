@@ -1,4 +1,4 @@
-class Day22 : DayX() {
+class Day22(title: String) : DayX(title) {
 
     override fun part1(): Any {
         var result = 0L
@@ -69,7 +69,7 @@ class Day22 : DayX() {
 }
 
 fun main() {
-    val day = Day22()
+    val day = Day22("Day 22: Monkey Market")
     day.solve()
     // Part 1: 12664695565
     // Part 2: 1444
