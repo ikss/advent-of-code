@@ -43,5 +43,5 @@ fun main() {
     val day = Day4("Day 4: Secure Container")
     day.solve()
     // Part 1: 1767
-    // Part 2: 
+    // Part 2: 1192
 }
