@@ -8,6 +8,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/aoc-2019" />
             <option value="$PROJECT_DIR$/aoc-2022" />
             <option value="$PROJECT_DIR$/aoc-2023" />
             <option value="$PROJECT_DIR$/aoc-2024" />
