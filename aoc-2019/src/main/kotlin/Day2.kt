@@ -7,6 +7,26 @@ class Day2(title: String) : DayX(title) {
         return executeProgram(codes)
     }
 
+    override fun part2(): Long {
+        val codes = input.joinToString(",").readAllNumbers().toMutableList()
+        val max = 100L
+        for (first in 0..max) {
+            for (second in 0..max) {
+                try {
+                    val copy = codes.toMutableList()
+                    copy[1] = first
+                    copy[2] = second
+                    if (executeProgram(copy) == 19690720L) {
+                        return 100 * first + second
+                    }
+                } catch (_: Exception) {
+                    continue
+                }
+            }
+        }
+        return -1L
+    }
+
     private fun executeProgram(codes: MutableList<Long>): Long {
         for (i in 0 until codes.size step 4) {
             val opcode = codes[i]
@@ -20,26 +40,6 @@ class Day2(title: String) : DayX(title) {
             }
         }
         return codes[0]
-    }
-
-    override fun part2(): Long {
-        val codes = input.joinToString(",").readAllNumbers().toMutableList()
-        val max = 100L
-        for (first in 0..max) {
-            for (second in 0..max) {
-                try {
-                    val copy = codes.toMutableList()
-                    copy[1] = first
-                    copy[2] = second
-                    if (executeProgram(copy) == 19690720L) {
-                        return 100 * first + second
-                    }
-                } catch (e: Exception) {
-                    continue
-                }
-            }
-        }
-        return -1L
     }
 }
 
