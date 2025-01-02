@@ -84,7 +84,7 @@ class Day16(title: String) : DayX(title) {
         var result = 0L
         val count = nodes.size / 2
 
-        val combinations = combinations(nodes.keys.toList(), count)
+        val combinations = nodes.keys.toList().combinations(count)
 
         for (combination in combinations) {
             val first = combination.toSet()

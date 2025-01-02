@@ -1,15 +1,31 @@
+import java.util.concurrent.BlockingQueue
+import java.util.concurrent.LinkedBlockingQueue
+
 class IntcodeComputer(
     val codes: MutableList<Long>,
-    val input: Int = 0,
+    val input: BlockingQueue<Long> = LinkedBlockingQueue(),
+    private val id: Int = 0,
+    private val debugMode: Boolean = false,
 ) {
+    var halted = false
+        private set
 
-    fun execute(): Long {
-        var output = 0L
+    var output: BlockingQueue<Long> = LinkedBlockingQueue()
 
+    fun execute() {
+        if (debugMode) {
+            println("Computer $id: starting execution")
+        }
         var curr = 0
         while (curr < codes.size) {
+            if (debugMode) {
+                println("Computer $id: executing at position $curr")
+            }
             val (opcode, modes) = parseInstruction(codes[curr].toInt())
-            if (opcode == 99) break
+            if (opcode == 99) {
+                halted = true
+                break
+            }
 
             when (opcode) {
                 1 -> {
@@ -27,12 +43,15 @@ class IntcodeComputer(
                 }
 
                 3 -> {
-                    codes[codes[curr + 1].toInt()] = input.toLong()
+                    if (input.isEmpty() && debugMode) {
+                        println("Computer $id: waiting for input")
+                    }
+                    codes[codes[curr + 1].toInt()] = input.take()
                     curr += 2
                 }
 
                 4 -> {
-                    output = codes[codes[curr + 1].toInt()]
+                    output.offer(codes[codes[curr + 1].toInt()])
                     curr += 2
                 }
 
@@ -71,8 +90,6 @@ class IntcodeComputer(
                 }
             }
         }
-
-        return output
     }
 
     private fun readParam(index: Int, curr: Int, modes: List<Boolean>, codes: List<Long>): Long =

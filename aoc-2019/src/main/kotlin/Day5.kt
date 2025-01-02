@@ -2,16 +2,20 @@ class Day5(title: String) : DayX(title) {
 
     override fun part1(): Long {
         val codes = input.joinToString(",").readAllNumbers().toMutableList()
-        val input = 1
+        val input = listOf(1L).toBlockingQueue()
 
-        return IntcodeComputer(codes, input).execute()
+        val intcodeComputer = IntcodeComputer(codes, input)
+        intcodeComputer.execute()
+        return intcodeComputer.output.poll()
     }
 
     override fun part2(): Long {
         val codes = input.joinToString(",").readAllNumbers().toMutableList()
-        val input = 5
+        val input = listOf(5L).toBlockingQueue()
 
-        return IntcodeComputer(codes, input).execute()
+        val intcodeComputer = IntcodeComputer(codes, input)
+        intcodeComputer.execute()
+        return intcodeComputer.output.poll()
     }
 }
 

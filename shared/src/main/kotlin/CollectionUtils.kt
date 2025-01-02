@@ -1,4 +1,6 @@
-fun <T> combinations(list: List<T>, k: Int): List<List<T>> {
+import java.util.concurrent.BlockingQueue
+
+fun <T> List<T>.combinations(k: Int): List<List<T>> {
     val result = ArrayList<List<T>>()
 
     fun backtrack(start: Int, current: ArrayList<T>) {
@@ -7,8 +9,8 @@ fun <T> combinations(list: List<T>, k: Int): List<List<T>> {
             return
         }
 
-        for (i in start until list.size) {
-            current.add(list[i])
+        for (i in start until this.size) {
+            current.add(this[i])
             backtrack(i + 1, current)
             current.removeLast()
         }
@@ -16,6 +18,29 @@ fun <T> combinations(list: List<T>, k: Int): List<List<T>> {
 
     backtrack(0, ArrayList())
     return result
+}
+
+fun <T> List<T>.permutations(): List<List<T>> {
+    val ret: MutableList<List<T>> = mutableListOf()
+    backtrack(ret, mutableSetOf(), this)
+    return ret
+}
+
+private fun <T> backtrack(ret: MutableList<List<T>>, used: MutableSet<T>, nums: List<T>) {
+    if (used.size == nums.size) {
+        ret.add(used.toList())
+        return
+    }
+    for (n in nums) {
+        if (!used.add(n)) continue
+
+        backtrack(ret, used, nums)
+        used.remove(n)
+    }
+}
+
+fun <E> List<E>.toBlockingQueue(): BlockingQueue<E> {
+    return java.util.concurrent.LinkedBlockingQueue(this)
 }
 
 fun countAllGraphDistances(graph: HashMap<String, ArrayList<String>>, countedDistances: HashMap<Pair<String, String>, Int>) {
