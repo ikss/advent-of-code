@@ -36,7 +36,7 @@ class Day7(title: String) : DayX(title) {
                     computers[it].execute()
                 }
             }.map { it.get() }
-            result = maxOf(result, computers[4].output.poll())
+            result = maxOf(result, computers[4].output.take())
         }
         executor.shutdownNow()
 

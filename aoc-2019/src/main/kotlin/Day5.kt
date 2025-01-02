@@ -6,7 +6,7 @@ class Day5(title: String) : DayX(title) {
 
         val intcodeComputer = IntcodeComputer(codes, input)
         intcodeComputer.execute()
-        return intcodeComputer.output.poll()
+        return intcodeComputer.output.take()
     }
 
     override fun part2(): Long {
@@ -15,7 +15,7 @@ class Day5(title: String) : DayX(title) {
 
         val intcodeComputer = IntcodeComputer(codes, input)
         intcodeComputer.execute()
-        return intcodeComputer.output.poll()
+        return intcodeComputer.output.take()
     }
 }
 
