@@ -1,7 +1,7 @@
 class Day5(title: String) : DayX(title) {
+    private val codes = input.readAllNumbers().toList()
 
     override fun part1(): Long {
-        val codes = input.readAllNumbers().toList()
         val input = listOf(1L).toBlockingQueue()
 
         val intcodeComputer = IntcodeComputer(codes, input)
@@ -10,7 +10,6 @@ class Day5(title: String) : DayX(title) {
     }
 
     override fun part2(): Long {
-        val codes = input.readAllNumbers().toList()
         val input = listOf(5L).toBlockingQueue()
 
         val intcodeComputer = IntcodeComputer(codes, input)
