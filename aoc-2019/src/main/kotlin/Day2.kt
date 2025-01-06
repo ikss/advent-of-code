@@ -1,12 +1,13 @@
 class Day2(title: String) : DayX(title) {
 
     override fun part1(): Long {
-        val codes = input.joinToString(",").readAllNumbers().toMutableList()
+        val codes = input.readAllNumbers().toMutableList()
         codes[1] = 12
         codes[2] = 2
 
-        IntcodeComputer(codes).execute()
-        return codes[0]
+        val computer = IntcodeComputer(codes)
+        computer.execute()
+        return computer.memory[0]!!
     }
 
     override fun part2(): Long {
@@ -18,8 +19,9 @@ class Day2(title: String) : DayX(title) {
                     val copy = codes.toMutableList()
                     copy[1] = first
                     copy[2] = second
-                    IntcodeComputer(copy).execute()
-                    if (copy[0] == 19690720L) {
+                    val computer = IntcodeComputer(copy)
+                    computer.execute()
+                    if (computer.memory[0]!! == 19690720L) {
                         return 100 * first + second
                     }
                 } catch (_: Exception) {
