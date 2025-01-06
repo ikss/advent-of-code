@@ -12,6 +12,7 @@ class IntcodeComputer(
         private set
 
     var output: BlockingQueue<Long> = LinkedBlockingQueue()
+    var relativeBase = 0L
 
     fun execute() {
         if (debugMode) {
@@ -28,14 +29,14 @@ class IntcodeComputer(
                 1 -> {
                     val op1 = readParam(0, curr, modes)
                     val op2 = readParam(1, curr, modes)
-                    memory[memory[curr + 3]!!] = op1 + op2
+                    memory[readIndex(2, curr, modes)] = op1 + op2
                     curr += 4
                 }
 
                 2 -> {
                     val op1 = readParam(0, curr, modes)
                     val op2 = readParam(1, curr, modes)
-                    memory[memory[curr + 3]!!] = op1 * op2
+                    memory[readIndex(2, curr, modes)] = op1 * op2
                     curr += 4
                 }
 
@@ -43,12 +44,12 @@ class IntcodeComputer(
                     if (input.isEmpty() && debugMode) {
                         println("Computer $id: waiting for input")
                     }
-                    memory[memory[curr + 1]!!] = input.take()
+                    memory[readIndex(0, curr, modes)] = input.take()
                     curr += 2
                 }
 
                 4 -> {
-                    output.offer(memory[memory[curr + 1]!!]!!)
+                    output.offer(readParam(0, curr, modes))
                     curr += 2
                 }
 
@@ -75,15 +76,20 @@ class IntcodeComputer(
                 7 -> {
                     val op1 = readParam(0, curr, modes)
                     val op2 = readParam(1, curr, modes)
-                    memory[memory[curr + 3]!!] = if (op1 < op2) 1 else 0
+                    memory[readIndex(2, curr, modes)] = if (op1 < op2) 1 else 0
                     curr += 4
                 }
 
                 8 -> {
                     val op1 = readParam(0, curr, modes)
                     val op2 = readParam(1, curr, modes)
-                    memory[memory[curr + 3]!!] = if (op1 == op2) 1 else 0
+                    memory[readIndex(2, curr, modes)] = if (op1 == op2) 1 else 0
                     curr += 4
+                }
+
+                9 -> {
+                    relativeBase += readParam(0, curr, modes)
+                    curr += 2
                 }
 
                 99 -> {
@@ -98,11 +104,24 @@ class IntcodeComputer(
         }
     }
 
-    private fun readParam(index: Int, curr: Long, modes: Map<Int, Int>): Long =
-        when (modes[index]) {
-            1 -> memory[curr + index + 1]!!
-            else -> memory[memory[curr + index + 1]!!]!!
+    private fun readParam(index: Int, curr: Long, modes: Map<Int, Int>): Long {
+        val value = memory[curr + index + 1]!!
+
+        return when (modes[index]) {
+            1 -> value
+            2 -> memory.getOrDefault(value + relativeBase, 0)
+            else -> memory.getOrDefault(value, 0)
         }
+    }
+
+    private fun readIndex(index: Int, curr: Long, modes: Map<Int, Int>): Long {
+        val value = memory[curr + index + 1]!!
+
+        return when (modes[index]) {
+            2 -> value + relativeBase
+            else -> value
+        }
+    }
 
     private fun parseInstruction(curr: Int): Pair<Int, Map<Int, Int>> {
         val opcode = curr % 100

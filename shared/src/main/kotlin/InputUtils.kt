@@ -13,6 +13,7 @@ operator fun CharGrid.get(p: Point): Char {
     if (p !in this) throw IllegalArgumentException("Point $p is out of bounds ${this.size}x${this[0].size}")
     return this[p.first][p.second]
 }
+
 operator fun CharGrid.set(p: Point, char: Char) {
     this[p.first][p.second] = char
 }

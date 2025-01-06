@@ -9,16 +9,16 @@ abstract class DayX(val title: String = "") {
 
     private fun runPart1() {
         val sw = Stopwatch.createStarted()
-        val result = part1()
         println("Part 1:")
+        val result = part1()
         println(" - Result: $result")
         println(" - Time: $sw")
     }
 
     private fun runPart2() {
         val sw = Stopwatch.createStarted()
-        val result = part2()
         println("Part 2:")
+        val result = part2()
         println(" - Result: $result")
         println(" - Time: $sw")
     }
