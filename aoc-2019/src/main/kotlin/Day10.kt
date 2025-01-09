@@ -1,18 +1,6 @@
-import java.util.concurrent.LinkedBlockingQueue
-
 class Day10(title: String) : DayX(title) {
     private val grid = input.toCharGrid()
-    private val asteroids = ArrayList<Point>()
-
-    init {
-        for (r in grid.indices) {
-            for (c in grid[r].indices) {
-                if (grid[r][c] == '#') {
-                    asteroids.add(r to c)
-                }
-            }
-        }
-    }
+    private val asteroids = grid.findAll('#')
 
     override fun part1(): Long {
         var result = 0L
@@ -24,7 +12,7 @@ class Day10(title: String) : DayX(title) {
         return result
     }
 
-    private fun countAsteroids(curr: Point, asteroids: java.util.ArrayList<Point>): Long {
+    private fun countAsteroids(curr: Point, asteroids: List<Point>): Long {
         var result = 0L
         val seen = HashSet<Point>()
 
@@ -83,7 +71,7 @@ class Day10(title: String) : DayX(title) {
                 return asteroid.second * 100L + asteroid.first
             }
         }
-        
+
         return -1
     }
 

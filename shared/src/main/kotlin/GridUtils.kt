@@ -1,5 +1,4 @@
 typealias Point = Pair<Int, Int>
-typealias LongPoint = Pair<Long, Long>
 
 operator fun Point.plus(other: Point): Point = Point(this.first + other.first, this.second + other.second)
 operator fun Point.minus(other: Point): Point = Point(this.first - other.first, this.second - other.second)
@@ -77,5 +76,64 @@ enum class Direction(val next: Point) {
                 'l', '<' -> LEFT
                 else -> throw IllegalArgumentException("Invalid direction: $c")
             }
+    }
+}
+
+typealias CharGrid = List<CharArray>
+
+fun List<String>.toCharGrid(): CharGrid = this.map { it.toCharArray() }
+
+operator fun CharGrid.contains(p: Point): Boolean = p.first in this.indices && p.second in this[p.first].indices
+operator fun CharGrid.get(p: Point): Char {
+    if (p !in this) throw IllegalArgumentException("Point $p is out of bounds ${this.size}x${this[0].size}")
+    return this[p.first][p.second]
+}
+
+operator fun CharGrid.set(p: Point, char: Char) {
+    this[p.first][p.second] = char
+}
+
+fun CharGrid.find(vararg chars: Char): Point {
+    for (point in this.pointIterator()) {
+        if (this[point] in chars) {
+            return point
+        }
+    }
+    throw IllegalArgumentException("No ${chars.concatToString()} found")
+}
+
+fun CharGrid.findAll(vararg chars: Char): List<Point> {
+    val result = ArrayList<Point>()
+    for (point in this.pointIterator()) {
+        if (this[point] in chars) {
+            result.add(point)
+        }
+    }
+    if (result.isEmpty()) throw IllegalArgumentException("No start found")
+    return result
+}
+
+fun CharGrid.print() {
+    for (row in this) {
+        println(row)
+    }
+}
+
+fun CharGrid.pointIterator(): Iterator<Point> = PointIterator(this)
+
+class PointIterator(val grid: List<CharArray>) : Iterator<Pair<Int, Int>> {
+    private var row = 0
+    private var col = 0
+
+    override fun hasNext(): Boolean = row < grid.size && col < grid[row].size
+
+    override fun next(): Pair<Int, Int> {
+        val result = row to col
+        col++
+        if (col == grid[row].size) {
+            col = 0
+            row++
+        }
+        return result
     }
 }
