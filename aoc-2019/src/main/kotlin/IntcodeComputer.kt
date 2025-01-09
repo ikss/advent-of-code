@@ -8,7 +8,7 @@ class IntcodeComputer(
     private val debugMode: Boolean = false,
 ) {
     val memory = codes.withIndex().associate { it.index.toLong() to it.value }.toMutableMap()
-    var halted = false
+    @Volatile var halted = false
         private set
 
     var output: BlockingQueue<Long> = LinkedBlockingQueue()
@@ -20,11 +20,11 @@ class IntcodeComputer(
         }
         var curr = 0L
         while (!halted) {
-            if (debugMode) {
-                println("Computer $id: executing at position $curr")
-            }
             val (opcode, modes) = parseInstruction(memory[curr]!!.toInt())
 
+            if (debugMode) {
+                println("Computer $id: executing [$opcode] at position $curr")
+            }
             when (opcode) {
                 1 -> {
                     val op1 = readParam(0, curr, modes)
@@ -94,6 +94,7 @@ class IntcodeComputer(
 
                 99 -> {
                     halted = true
+                    output.offer(POISON_PILL)
                     break
                 }
 
@@ -135,5 +136,7 @@ class IntcodeComputer(
         }
         return opcode to modes
     }
-
+    companion object {
+        const val POISON_PILL = Long.MIN_VALUE
+    }
 }
