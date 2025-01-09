@@ -27,10 +27,6 @@ class Day10(title: String) : DayX(title) {
         return result
     }
 
-    private fun gcd(a: Int, b: Int): Int {
-        return if (b == 0) a else gcd(b, a % b)
-    }
-
     override fun part2(): Long {
         var result = 0L
         var startingPoint = 0 to 0
