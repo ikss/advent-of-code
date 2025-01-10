@@ -8,8 +8,12 @@ class IntcodeComputer(
     private val debugMode: Boolean = false,
 ) {
     val memory = codes.withIndex().associate { it.index.toLong() to it.value }.toMutableMap()
-    @Volatile var halted = false
+    @Volatile
+    var halted = false
         private set
+
+    @Volatile
+    var waitingInput = false
 
     var output: BlockingQueue<Long> = LinkedBlockingQueue()
     var relativeBase = 0L
@@ -41,10 +45,12 @@ class IntcodeComputer(
                 }
 
                 3 -> {
-                    if (input.isEmpty() && debugMode) {
-                        println("Computer $id: waiting for input")
+                    if (input.isEmpty()) {
+                        if (debugMode) println("Computer $id: waiting for input")
+                        waitingInput = true
                     }
                     memory[readIndex(0, curr, modes)] = input.take()
+                    waitingInput = false
                     curr += 2
                 }
 
@@ -136,6 +142,7 @@ class IntcodeComputer(
         }
         return opcode to modes
     }
+
     companion object {
         const val POISON_PILL = Long.MIN_VALUE
     }

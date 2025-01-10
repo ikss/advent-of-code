@@ -47,23 +47,8 @@ class Day11(title: String) : DayX(title) {
         colors[0 to 0] = 1
         paint(colors, painted)
 
-        val minr = colors.minOf { it.key.first }
-        val maxr = colors.maxOf { it.key.first }
-        val minc = colors.minOf { it.key.second}
-        val maxc = colors.maxOf { it.key.second }
-        
-        val grid = Array(maxr - minr + 1) { CharArray(maxc - minc + 1) { ' ' } }
-        
-        for (i in minr..maxr) {
-            for (j in minc..maxc) {
-                val color = colors.getOrDefault(i to j, 0L)
-                grid[i - minr][j - minc] = if (color == 1L) '#' else ' '
-            }
-        }
-        
-        for (i in grid.indices) {
-            println(grid[i])
-        }
+        val board = colors.mapValues { if (it.value == 1L) '#' else ' ' }
+        board.draw()
 
         return -1L
     }

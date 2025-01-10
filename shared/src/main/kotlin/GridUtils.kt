@@ -137,3 +137,21 @@ class PointIterator(val grid: List<CharArray>) : Iterator<Pair<Int, Int>> {
         return result
     }
 }
+
+fun Map<Point, Char>.draw() {
+    val minr = this.minOf { it.key.first }
+    val maxr = this.maxOf { it.key.first }
+    val minc = this.minOf { it.key.second}
+    val maxc = this.maxOf { it.key.second }
+
+    val grid = Array(maxr - minr + 1) { CharArray(maxc - minc + 1) { ' ' } }
+
+    for (i in minr..maxr) {
+        for (j in minc..maxc) {
+            val char = this.getOrDefault(i to j, ' ')
+            grid[i - minr][j - minc] = char
+        }
+    }
+
+    println(grid.joinToString("\n") { it.joinToString("") })
+}

@@ -1,6 +1,6 @@
 fun Iterable<Long>.lcm(): Long = this.reduce { acc, l -> lcm(acc, l) }
 
-private fun lcm(a: Long, b: Long): Long {
+fun lcm(a: Long, b: Long): Long {
     val larger = if (a > b) a else b
     val maxLcm = a * b
     var lcm = larger
