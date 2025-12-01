@@ -44,7 +44,6 @@ local.properties
 # STS (Spring Tool Suite)
 .springBeans
 
-
 # node.js
 #
 node_modules/
@@ -104,7 +103,6 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
-
 ### Maven ###
 target/
 pom.xml.tag
@@ -115,7 +113,6 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
-
 
 ### Java ###
 *.class
@@ -141,6 +138,8 @@ build
 /gradlew
 /gradlew.bat
 
+# Ignore Kotlin compiler sessions
+.kotlin
+
+# Ignore files with task data
 *.txt
-/aoc-2023/src/main/resources/
-/.idea/

@@ -12,8 +12,8 @@ dependencies {
     implementation(project(":shared"))
     
     // Tests
-    testImplementation("org.junit.jupiter:junit-jupiter:5.11.3")
-    testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
+    testImplementation("org.junit.jupiter:junit-jupiter:6.0.1")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:6.1.0")
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
