@@ -24,7 +24,7 @@ abstract class DayX(val title: String = "") {
     }
 
     fun solve() {
-        println(if (title.isEmpty()) this.javaClass.simpleName else title)
+        println(title.ifEmpty { this.javaClass.simpleName })
         println("-----------------")
         runPart1()
         println("-----------------")
