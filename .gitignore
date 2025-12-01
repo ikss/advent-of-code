@@ -143,3 +143,4 @@ build
 
 *.txt
 /aoc-2023/src/main/resources/
+/.idea/
