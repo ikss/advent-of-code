@@ -42,6 +42,6 @@ class Day1(title: String) : DayX(title) {
 fun main() {
     val day = Day1("Day 1: Secret Entrance")
     day.solve()
-    // Part 1:
-    // Part 2:
+    // Part 1: 1084
+    // Part 2: 6475
 }

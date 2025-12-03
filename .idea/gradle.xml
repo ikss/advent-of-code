@@ -4,6 +4,8 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
+        <option name="delegatedBuild" value="false" />
+        <option name="testRunner" value="PLATFORM" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
@@ -12,7 +14,9 @@
             <option value="$PROJECT_DIR$/aoc-2022" />
             <option value="$PROJECT_DIR$/aoc-2023" />
             <option value="$PROJECT_DIR$/aoc-2024" />
+            <option value="$PROJECT_DIR$/aoc-2025" />
             <option value="$PROJECT_DIR$/shared" />
+            <option value="$PROJECT_DIR$/yandex-coderun-2025" />
           </set>
         </option>
       </GradleProjectSettings>
