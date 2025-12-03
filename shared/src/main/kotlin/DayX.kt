@@ -1,7 +1,7 @@
 import com.google.common.base.Stopwatch
 
 abstract class DayX(val title: String = "") {
-    protected val input = readInput()
+    protected lateinit var input: List<String>
 
     protected abstract fun part1(): Any
 
@@ -25,6 +25,22 @@ abstract class DayX(val title: String = "") {
 
     fun solve() {
         println(title.ifEmpty { this.javaClass.simpleName })
+        val exampleInput = readExampleInput()
+        if (exampleInput != null) {
+            println("=== EXAMPLE INPUT ===")
+            input = exampleInput
+            solveInternal()
+        }
+        input = readInput()
+        println("=== REAL INPUT ===")
+        println("-----------------")
+        runPart1()
+        println("-----------------")
+        runPart2()
+        println("-----------------")
+    }
+
+    private fun solveInternal() {
         println("-----------------")
         runPart1()
         println("-----------------")

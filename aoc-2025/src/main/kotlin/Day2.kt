@@ -1,8 +1,8 @@
 class Day2(title: String) : DayX(title) {
 
-    private val ranges = input.joinToString(",").split(",")
 
     override fun part1(): Any {
+        val ranges = input.joinToString(",").split(",")
         var result = 0L
 
         for (line in ranges) {
@@ -30,6 +30,7 @@ class Day2(title: String) : DayX(title) {
     }
 
     override fun part2(): Any {
+        val ranges = input.joinToString(",").split(",")
         var result = 0L
 
         for (line in ranges) {
@@ -50,7 +51,7 @@ class Day2(title: String) : DayX(title) {
         val numstr = num.toString()
         val len = numstr.length
 
-        for (i in 1 .. len / 2) {
+        for (i in 1..len / 2) {
             if (len % i != 0) continue
             val substr = numstr.take(i)
             var proper = false

@@ -1,5 +1,6 @@
 val NUMBER_PATTERN = Regex("-?\\d+")
 fun DayX.readInput(): List<String> = this::class.java.getResourceAsStream(this::class.simpleName!!.lowercase() + ".txt")!!.bufferedReader().readLines()
+fun DayX.readExampleInput(): List<String>? = this::class.java.getResourceAsStream(this::class.simpleName!!.lowercase() + "_example.txt")?.bufferedReader()?.readLines()
 
 fun String.readAllNumbers(): Sequence<Long> = NUMBER_PATTERN.findAll(this).map { it.value.toLong() }
 fun List<String>.readAllNumbers(): Sequence<Long> = this.joinToString(",").readAllNumbers()

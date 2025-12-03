@@ -2,12 +2,10 @@ import java.util.*
 
 class Day3(title: String) : DayX(title) {
 
-    private val lines = input
-
     override fun part1(): Any {
         var result = 0L
 
-        for (line in lines) {
+        for (line in input) {
             result += getMax(line, 2)
         }
 
@@ -17,7 +15,7 @@ class Day3(title: String) : DayX(title) {
     override fun part2(): Any {
         var result = 0L
 
-        for (line in lines) {
+        for (line in input) {
             result += getMax(line, 12)
         }
 
@@ -66,6 +64,8 @@ class Day3(title: String) : DayX(title) {
 fun main() {
     val day = Day3("Day 3: Lobby")
     day.solve()
-    // Part 1: 16993
-    // Part 2: 168617068915447
+    // Example part 1: 357
+    // Example part 2: 3121910778619
+    // Real part 1: 16993
+    // Real part 2: 168617068915447
 }
