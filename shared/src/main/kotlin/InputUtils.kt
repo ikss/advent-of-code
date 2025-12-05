@@ -4,6 +4,10 @@ fun DayX.readExampleInput(): List<String>? = this::class.java.getResourceAsStrea
 
 fun String.readAllNumbers(): Sequence<Long> = NUMBER_PATTERN.findAll(this).map { it.value.toLong() }
 fun List<String>.readAllNumbers(): Sequence<Long> = this.joinToString(",").readAllNumbers()
+fun List<String>.readAllRanges(delimiter: Char = '-'):List<LongRange> = map {
+    val (left, right) = it.split(delimiter)
+    LongRange(left.toLong(), right.toLong())
+}
 
 fun mapToLong(s: String): Long? = s.trim().takeIf { it.isNotBlank() }?.toLong()
 
